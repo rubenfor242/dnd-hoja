@@ -72,16 +72,27 @@ function generarTablaPx() {
     tablaPxElemento.innerHTML = "";
 
     tablaPx.forEach(fila => {
-        const divFila = document.createElement("div");
-        divFila.classList.add("fila-px");
-        divFila.dataset.nivel = fila.nivel;
+        const boton = document.createElement("button");
 
-        divFila.innerHTML = `
+        boton.type = "button";
+        boton.classList.add("fila-px");
+        boton.dataset.nivel = fila.nivel;
+        boton.dataset.px = fila.px;
+
+        boton.innerHTML = `
             <span>Nivel ${fila.nivel}</span>
             <span>${formatearNumero(fila.px)} PX</span>
         `;
 
-        tablaPxElemento.appendChild(divFila);
+        boton.addEventListener("click", () => {
+            inputNivel.value = fila.nivel;
+            inputPx.value = fila.px;
+
+            actualizarCompetencia();
+            resaltarNivelActual();
+        });
+
+        tablaPxElemento.appendChild(boton);
     });
 }
 
