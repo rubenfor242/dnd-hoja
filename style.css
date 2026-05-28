@@ -90,8 +90,12 @@ h1 {
 
 .datos-personaje {
     display: grid;
-    grid-template-columns: 2fr 1.3fr 90px;
+    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
+}
+
+.campo-nombre {
+    grid-column: span 2;
 }
 
 .campo {
@@ -128,11 +132,6 @@ input:focus {
     background: rgba(255,255,255,0.35);
 }
 
-input[type="number"] {
-    text-align: center;
-    font-weight: bold;
-}
-
 @media (max-width: 650px) {
     body {
         padding: 10px;
@@ -152,7 +151,7 @@ input[type="number"] {
         grid-template-columns: 1fr;
     }
 
-    .campo-nivel {
-        max-width: 120px;
+    .campo-nombre {
+        grid-column: span 1;
     }
 }
