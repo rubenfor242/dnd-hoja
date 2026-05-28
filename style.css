@@ -34,14 +34,6 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
-.etiqueta-superior {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.7rem;
-    color: #686154;
-    margin-bottom: 4px;
-}
-
 h1 {
     text-transform: uppercase;
     letter-spacing: 1.5px;
