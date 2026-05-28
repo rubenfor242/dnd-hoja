@@ -9,6 +9,7 @@ body {
     background:
         radial-gradient(circle at top, rgba(255,255,255,0.65), transparent 35%),
         #d8d1c2;
+
     color: #2b2925;
     font-family: Georgia, "Times New Roman", serif;
     padding: 16px;
@@ -28,6 +29,7 @@ body {
     background: #f4f0e7;
     border: 2px solid #686154;
     border-radius: 6px;
+
     padding: 18px 20px;
     margin-bottom: 16px;
 
@@ -44,6 +46,7 @@ h1 {
 .marca-edicion {
     width: 62px;
     height: 62px;
+
     border: 2px solid #686154;
     border-radius: 50%;
 
@@ -53,15 +56,19 @@ h1 {
 
     font-size: 1.3rem;
     font-weight: bold;
+
     background: #ede7da;
 }
 
 .panel {
     position: relative;
     background: #f7f3ea;
+
     border: 2px solid #686154;
     border-radius: 6px;
+
     padding: 18px;
+    margin-bottom: 16px;
 
     box-shadow: 0 4px 10px rgba(0,0,0,0.10);
 }
@@ -98,6 +105,12 @@ h1 {
     grid-column: span 2;
 }
 
+.bloque-nivel {
+    display: grid;
+    grid-template-columns: 1.1fr 0.8fr 1fr 1.2fr;
+    gap: 14px;
+}
+
 .campo {
     display: flex;
     flex-direction: column;
@@ -112,27 +125,59 @@ label {
     color: #4d493f;
 }
 
-input {
+input,
+select {
     width: 100%;
     min-height: 42px;
 
     background: transparent;
+
     border: none;
     border-bottom: 2px solid #8a8274;
 
     color: #2b2925;
+
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.1rem;
+
     padding: 6px 4px;
 }
 
-input:focus {
+input:focus,
+select:focus {
     outline: none;
     border-bottom-color: #2b2925;
     background: rgba(255,255,255,0.35);
 }
 
+input[type="number"] {
+    text-align: center;
+}
+
+input[readonly] {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.valor-estatico {
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 2px solid #8a8274;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.oculto {
+    display: none;
+}
+
 @media (max-width: 650px) {
+
     body {
         padding: 10px;
     }
@@ -147,7 +192,8 @@ input:focus {
         font-size: 1rem;
     }
 
-    .datos-personaje {
+    .datos-personaje,
+    .bloque-nivel {
         grid-template-columns: 1fr;
     }
 
