@@ -43,6 +43,14 @@ h1 {
     line-height: 1;
 }
 
+h2 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.82rem;
+    margin-bottom: 10px;
+    color: #4d493f;
+}
+
 .marca-edicion {
     width: 62px;
     height: 62px;
@@ -105,9 +113,16 @@ h1 {
     grid-column: span 2;
 }
 
+.bloque-progreso {
+    display: grid;
+    grid-template-columns: 1fr 290px;
+    gap: 18px;
+    align-items: start;
+}
+
 .bloque-nivel {
     display: grid;
-    grid-template-columns: 1.1fr 0.8fr 1fr 1.2fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
 }
 
@@ -172,8 +187,54 @@ input[readonly] {
     font-weight: bold;
 }
 
+.tabla-px {
+    border-left: 2px solid #8a8274;
+    padding-left: 16px;
+}
+
+.tabla-px-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.fila-px {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 5px 7px;
+    border-bottom: 1px solid rgba(104, 97, 84, 0.35);
+
+    font-size: 0.82rem;
+}
+
+.fila-px span:first-child {
+    font-weight: bold;
+}
+
+.fila-px.activa {
+    background: #e3d8c2;
+    outline: 1px solid #686154;
+    border-radius: 4px;
+}
+
 .oculto {
     display: none;
+}
+
+@media (max-width: 750px) {
+
+    .bloque-progreso {
+        grid-template-columns: 1fr;
+    }
+
+    .tabla-px {
+        border-left: none;
+        border-top: 2px solid #8a8274;
+        padding-left: 0;
+        padding-top: 14px;
+    }
 }
 
 @media (max-width: 650px) {
@@ -199,5 +260,9 @@ input[readonly] {
 
     .campo-nombre {
         grid-column: span 1;
+    }
+
+    .tabla-px-grid {
+        grid-template-columns: 1fr;
     }
 }

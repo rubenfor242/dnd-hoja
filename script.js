@@ -3,6 +3,8 @@ const inputPx = document.getElementById("px");
 const valorCompetencia = document.getElementById("competencia");
 const modoProgreso = document.getElementById("modoProgreso");
 const campoPx = document.getElementById("campoPx");
+const tablaPxContenedor = document.getElementById("tablaPxContenedor");
+const tablaPxElemento = document.getElementById("tablaPx");
 
 const tablaPx = [
     { nivel: 1, px: 0 },
@@ -45,6 +47,10 @@ function limitarNumero(valor, minimo, maximo) {
     return numero;
 }
 
+function formatearNumero(numero) {
+    return numero.toLocaleString("es-ES");
+}
+
 function obtenerPxPorNivel(nivel) {
     const fila = tablaPx.find(elemento => elemento.nivel === nivel);
     return fila.px;
@@ -60,6 +66,36 @@ function obtenerNivelPorPx(px) {
     }
 
     return nivelCalculado;
+}
+
+function generarTablaPx() {
+    tablaPxElemento.innerHTML = "";
+
+    tablaPx.forEach(fila => {
+        const divFila = document.createElement("div");
+        divFila.classList.add("fila-px");
+        divFila.dataset.nivel = fila.nivel;
+
+        divFila.innerHTML = `
+            <span>Nivel ${fila.nivel}</span>
+            <span>${formatearNumero(fila.px)} PX</span>
+        `;
+
+        tablaPxElemento.appendChild(divFila);
+    });
+}
+
+function resaltarNivelActual() {
+    const nivelActual = limitarNumero(inputNivel.value, 1, 20);
+    const filas = document.querySelectorAll(".fila-px");
+
+    filas.forEach(fila => {
+        fila.classList.remove("activa");
+
+        if (parseInt(fila.dataset.nivel) === nivelActual) {
+            fila.classList.add("activa");
+        }
+    });
 }
 
 function actualizarCompetencia() {
@@ -82,11 +118,13 @@ function actualizarDesdeNivel() {
 
     if (modoProgreso.value === "hitos") {
         actualizarCompetencia();
+        resaltarNivelActual();
         return;
     }
 
     inputPx.value = obtenerPxPorNivel(nivel);
     actualizarCompetencia();
+    resaltarNivelActual();
 }
 
 function actualizarDesdePx() {
@@ -96,11 +134,13 @@ function actualizarDesdePx() {
     inputNivel.value = obtenerNivelPorPx(px);
 
     actualizarCompetencia();
+    resaltarNivelActual();
 }
 
 function actualizarModoProgreso() {
     if (modoProgreso.value === "px") {
         campoPx.classList.remove("oculto");
+        tablaPxContenedor.classList.remove("oculto");
         inputNivel.readOnly = true;
 
         actualizarDesdePx();
@@ -108,11 +148,14 @@ function actualizarModoProgreso() {
 
     if (modoProgreso.value === "hitos") {
         campoPx.classList.add("oculto");
+        tablaPxContenedor.classList.add("oculto");
         inputNivel.readOnly = false;
 
         actualizarDesdeNivel();
     }
 }
+
+generarTablaPx();
 
 inputNivel.addEventListener("input", actualizarDesdeNivel);
 inputPx.addEventListener("input", actualizarDesdePx);
