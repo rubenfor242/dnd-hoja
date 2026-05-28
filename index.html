@@ -1,22 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Ficha D&D</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha D&D 5.5</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>Ficha D&D</h1>
+    <div class="contenedor">
 
-<label>Nombre:</label>
-<input type="text">
+        <h1>Ficha D&D 5.5</h1>
 
-<label>Fuerza:</label>
-<input type="number" id="fue">
+        <div class="bloque-personaje">
 
-<p>Modificador: <span id="modFue">0</span></p>
+            <div class="campo">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Nombre del personaje">
+            </div>
 
-<script src="script.js"></script>
+            <div class="campo">
+                <label for="clase">Clase</label>
+                <input type="text" id="clase" placeholder="Ej: Guerrero">
+            </div>
+
+            <div class="campo">
+                <label for="nivel">Nivel</label>
+                <input type="number" id="nivel" min="1" max="20" value="1">
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>
