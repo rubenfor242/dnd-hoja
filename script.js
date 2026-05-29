@@ -11,6 +11,13 @@ const botonEscudo = document.getElementById("botonEscudo");
 const valorCaTotal = document.getElementById("caTotal");
 const tipoArmadura = document.getElementById("tipoArmadura");
 const notaCaTotal = document.getElementById("notaCaTotal");
+const inputPgActuales = document.getElementById("pgActuales");
+const inputPgMaximos = document.getElementById("pgMaximos");
+const inputPgTemporales = document.getElementById("pgTemporales");
+const valorIniciativa = document.getElementById("iniciativa");
+const valorPercepcionPasiva = document.getElementById("percepcionPasiva");
+const botonInspiracion = document.getElementById("botonInspiracion");
+const inspiracionFlotante = document.getElementById("inspiracionFlotante");
 
 const tablaPx = [
     { nivel: 1, px: 0 },
@@ -284,6 +291,51 @@ function actualizarCA() {
     notaCaTotal.textContent = textoNota;
 }
 
+function actualizarEstado() {
+
+    const puntuacionDestreza = limitarNumero(
+        atributos.des.input.value,
+        3,
+        20
+    );
+
+    const modificadorDestreza = calcularModificador(
+        puntuacionDestreza
+    );
+
+    valorIniciativa.textContent =
+        `1D20${formatearModificador(modificadorDestreza)}`;
+
+    const percepcionActual =
+        parseInt(
+            atributos.sab.habilidades.percepcion.textContent
+        ) || 0;
+
+    valorPercepcionPasiva.textContent =
+        10 + percepcionActual;
+}
+
+function actualizarPG() {
+    const pgMaximos = limitarNumero(inputPgMaximos.value, 0, 999);
+    const pgTemporales = limitarNumero(inputPgTemporales.value, 0, 999);
+
+    let pgActuales = limitarNumero(inputPgActuales.value, 0, 999);
+
+    if (pgActuales > pgMaximos) {
+        pgActuales = pgMaximos;
+    }
+
+    inputPgMaximos.value = pgMaximos;
+    inputPgActuales.value = pgActuales;
+    inputPgTemporales.value = pgTemporales;
+
+    if (pgTemporales > 0) {
+        inputPgActuales.readOnly = true;
+    } else {
+        inputPgActuales.readOnly = false;
+    }
+}
+
 function actualizarModoProgreso() {
     if (modoProgreso.value === "px") {
         campoPx.classList.remove("oculto");
@@ -351,10 +403,15 @@ modoProgreso.addEventListener("change", actualizarModoProgreso);
 inputCaBase.addEventListener("input", actualizarCA);
 tipoArmadura.addEventListener("change", actualizarCA);
 
+inputPgActuales.addEventListener("input", actualizarPG);
+inputPgMaximos.addEventListener("input", actualizarPG);
+inputPgTemporales.addEventListener("input", actualizarPG);
+
 Object.keys(atributos).forEach(claveAtributo => {
     atributos[claveAtributo].input.addEventListener("change", () => {
         actualizarAtributos();
         actualizarCA();
+        actualizarEstado();
     });
 });
 
@@ -378,6 +435,67 @@ botonEscudo.addEventListener("click", () => {
     actualizarCA();
 });
 
+function actualizarCirculosMuerte(tipo, cantidad) {
+    const fila = document.querySelector(`.fila-muerte[data-tipo="${tipo}"]`);
+    const circulos = fila.querySelectorAll(".muerte-circulo");
+
+    circulos.forEach((circulo, indice) => {
+        if (indice < cantidad) {
+            circulo.classList.add("activa");
+        } else {
+            circulo.classList.remove("activa");
+        }
+    });
+}
+
+function obtenerCantidadMuerte(tipo) {
+    const fila = document.querySelector(`.fila-muerte[data-tipo="${tipo}"]`);
+    const circulosActivos = fila.querySelectorAll(".muerte-circulo.activa");
+
+    return circulosActivos.length;
+}
+
+document.querySelectorAll(".boton-muerte").forEach(boton => {
+    boton.addEventListener("click", () => {
+        const tipo = boton.dataset.tipo;
+        let cantidad = obtenerCantidadMuerte(tipo);
+
+        if (cantidad < 3) {
+            cantidad++;
+        }
+
+        actualizarCirculosMuerte(tipo, cantidad);
+    });
+});
+
+document.getElementById("reiniciarMuerte").addEventListener("click", () => {
+    actualizarCirculosMuerte("exitos", 0);
+    actualizarCirculosMuerte("fallos", 0);
+});
+
+function actualizarInspiracion() {
+    if (botonInspiracion.classList.contains("activa")) {
+        inspiracionFlotante.classList.remove("oculto");
+    } else {
+        inspiracionFlotante.classList.add("oculto");
+    }
+}
+
+botonInspiracion.addEventListener("click", () => {
+    botonInspiracion.classList.toggle("activa");
+
+    actualizarInspiracion();
+});
+
+inspiracionFlotante.addEventListener("click", () => {
+    botonInspiracion.classList.remove("activa");
+
+    actualizarInspiracion();
+});
+
 actualizarModoProgreso();
 actualizarAtributos();
 actualizarCA();
+actualizarPG();
+actualizarEstado();
+actualizarInspiracion();

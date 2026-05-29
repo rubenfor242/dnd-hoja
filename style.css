@@ -191,10 +191,6 @@ input[readonly] {
     cursor: not-allowed;
 }
 
-/* =========================
-   CA / PG / DEFENSA
-========================= */
-
 .bloque-defensa {
     display: grid;
     gap: 16px;
@@ -255,10 +251,212 @@ input[readonly] {
     height: 16px;
 }
 
+.separador-bloque {
+    height: 2px;
+
+    background: rgba(104, 97, 84, 0.35);
+
+    margin: 22px 0;
+}
+
+.bloque-pg {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-top: 22px;
+}
+
+.bloque-dados-golpe {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+.bloque-muerte {
+    display: grid;
+
+    gap: 12px;
+}
+
+.fila-muerte {
+    display: grid;
+    grid-template-columns: 110px auto;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.boton-muerte,
+.boton-reiniciar-muerte {
+    min-height: 34px;
+
+    background: #f1eee6;
+
+    border: 2px solid #686154;
+
+    color: #2b2925;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.boton-muerte:hover,
+.boton-reiniciar-muerte:hover {
+    background: #ebe2d2;
+}
+
+.boton-reiniciar-muerte {
+    width: fit-content;
+
+    padding: 8px 16px;
+
+    justify-self: start;
+
+    font-size: 0.72rem;
+}
+
+.circulos-muerte {
+    display: flex;
+    gap: 10px;
+}
+
+.muerte-circulo {
+    width: 22px;
+    height: 22px;
+
+    pointer-events: none;
+}
+
+.bloque-estado {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 14px;
+
+    align-items: end;
+}
+
+.estado-campo {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.campo-velocidad {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.sufijo-velocidad {
+    font-weight: bold;
+    color: #4d493f;
+}
+
+.inspiracion-campo {
+    align-items: center;
+}
+
+#botonInspiracion {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    border: 3px solid #686154;
+
+    background: #f1eee6;
+
+    color: #686154;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+#botonInspiracion:hover {
+    background: #ebe2d2;
+}
+
+#botonInspiracion.activa {
+    background: #d9c18a;
+
+    color: #3b2f1c;
+
+    border-color: #8a6a2f;
+}
+
+.inspiracion-flotante {
+    position: fixed;
+
+    right: 16px;
+    bottom: 16px;
+
+    z-index: 999;
+
+    padding: 12px 16px;
+
+    border: 3px solid #8a6a2f;
+    border-radius: 999px;
+
+    background: #d9c18a;
+
+    color: #3b2f1c;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    font-weight: bold;
+
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+
+    cursor: pointer;
+}
+
+.inspiracion-flotante:hover {
+    background: #e4cf99;
+}
+
+@media (max-width: 650px) {
+
+    .fila-muerte {
+        grid-template-columns: 1fr;
+    }
+
+    .circulos-muerte {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 650px) {
 
     .bloque-ca {
         grid-template-columns: 1fr;
+    }
+
+    .bloque-pg {
+        grid-template-columns: 1fr;
+    }
+
+    .bloque-dados-golpe {
+        grid-template-columns: 1fr;
+    }
+
+    .bloque-estado {
+        grid-template-columns: repeat(5, minmax(90px, 1fr));
+
+        overflow-x: auto;
     }
 }
 

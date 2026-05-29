@@ -155,6 +155,181 @@
 
             </div>
 
+            <div class="separador-bloque"></div>
+
+            <div class="bloque-pg">
+
+                <div class="campo">
+                    <label for="pgActuales">PG actuales</label>
+
+                    <input
+                        type="number"
+                        id="pgActuales"
+                        min="0"
+                        max="999"
+                        value="0"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="pgMaximos">PG máximos</label>
+
+                    <input
+                        type="number"
+                        id="pgMaximos"
+                        min="0"
+                        max="999"
+                        value="0"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="pgTemporales">PG temporales</label>
+
+                    <input
+                        type="number"
+                        id="pgTemporales"
+                        min="0"
+                        max="999"
+                        value="0"
+                    >
+                </div>
+
+            </div>
+
+            <div class="separador-bloque"></div>
+
+            <div class="bloque-dados-golpe">
+
+                <div class="campo">
+                    <label for="dadosGolpeGastados">DG gastados</label>
+
+                    <input
+                        type="number"
+                        id="dadosGolpeGastados"
+                        min="0"
+                        max="99"
+                        value="0"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="dadosGolpeMaximos">DG máximos</label>
+
+                    <input
+                        type="number"
+                        id="dadosGolpeMaximos"
+                        min="0"
+                        max="99"
+                        value="0"
+                    >
+                </div>
+
+            </div>
+
+            <div class="separador-bloque"></div>
+
+            <div class="bloque-muerte">
+
+                <h2>Salvaciones contra muerte</h2>
+
+                <div class="fila-muerte" data-tipo="exitos">
+                    <button type="button" class="boton-muerte" data-tipo="exitos">
+                        Éxitos
+                    </button>
+
+                    <div class="circulos-muerte">
+                        <span class="competencia-btn muerte-circulo"></span>
+                        <span class="competencia-btn muerte-circulo"></span>
+                        <span class="competencia-btn muerte-circulo"></span>
+                    </div>
+                </div>
+
+                <div class="fila-muerte" data-tipo="fallos">
+                    <button type="button" class="boton-muerte" data-tipo="fallos">
+                        Fallos
+                    </button>
+
+                    <div class="circulos-muerte">
+                        <span class="competencia-btn muerte-circulo"></span>
+                        <span class="competencia-btn muerte-circulo"></span>
+                        <span class="competencia-btn muerte-circulo"></span>
+                    </div>
+                </div>
+
+                <button type="button" class="boton-reiniciar-muerte" id="reiniciarMuerte">
+                    Reiniciar salvaciones
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="panel bloque-estado">
+
+            <div class="estado-campo">
+
+                <label>Iniciativa</label>
+
+                <div class="valor-estatico" id="iniciativa">
+                    1D20+0
+                </div>
+
+            </div>
+
+            <div class="estado-campo">
+
+                <label for="velocidad">Velocidad</label>
+
+                <div class="campo-velocidad">
+                    <input
+                        type="number"
+                        id="velocidad"
+                        min="0"
+                        max="999"
+                        value="9"
+                    >
+
+                    <span class="sufijo-velocidad">m.</span>
+                </div>
+
+            </div>
+
+            <div class="estado-campo">
+
+                <label for="tamano">Tamaño</label>
+
+                <select id="tamano">
+                    <option value="Diminuto">Diminuto</option>
+                    <option value="Pequeño">Pequeño</option>
+                    <option value="Mediano" selected>Mediano</option>
+                    <option value="Grande">Grande</option>
+                    <option value="Enorme">Enorme</option>
+                    <option value="Gargantuesco">Gargantuesco</option>
+                </select>
+
+            </div>
+
+            <div class="estado-campo">
+
+                <label>Percepción pasiva</label>
+
+                <div class="valor-estatico" id="percepcionPasiva">
+                    10
+                </div>
+
+            </div>
+
+            <div class="estado-campo inspiracion-campo">
+
+                <label>Inspiración heroica</label>
+
+                <button type="button" id="botonInspiracion">
+                    ★
+                </button>
+
+            </div>
+
         </section>
 
         <section class="bloque-atributos">
@@ -798,6 +973,10 @@
         </section>
 
     </main>
+
+    <button type="button" id="inspiracionFlotante" class="inspiracion-flotante oculto">
+        ★ Inspiración disponible
+    </button>
 
     <script src="script.js"></script>
 
