@@ -29,6 +29,73 @@ const tablaPx = [
     { nivel: 20, px: 355000 }
 ];
 
+const atributos = {
+    fue: {
+        input: document.getElementById("fue"),
+        modificador: document.getElementById("mod-fue"),
+        salvacion: document.getElementById("salvacion-fue"),
+        habilidades: {
+            atletismo: document.getElementById("habilidad-atletismo")
+        }
+    },
+
+    des: {
+        input: document.getElementById("des"),
+        modificador: document.getElementById("mod-des"),
+        salvacion: document.getElementById("salvacion-des"),
+        habilidades: {
+            acrobacias: document.getElementById("habilidad-acrobacias"),
+            "juego-manos": document.getElementById("habilidad-juego-manos"),
+            sigilo: document.getElementById("habilidad-sigilo")
+        }
+    },
+
+    con: {
+        input: document.getElementById("con"),
+        modificador: document.getElementById("mod-con"),
+        salvacion: document.getElementById("salvacion-con"),
+        habilidades: {}
+    },
+
+    int: {
+        input: document.getElementById("int"),
+        modificador: document.getElementById("mod-int"),
+        salvacion: document.getElementById("salvacion-int"),
+        habilidades: {
+            arcano: document.getElementById("habilidad-arcano"),
+            historia: document.getElementById("habilidad-historia"),
+            investigacion: document.getElementById("habilidad-investigacion"),
+            naturaleza: document.getElementById("habilidad-naturaleza"),
+            religion: document.getElementById("habilidad-religion")
+        }
+    },
+
+    sab: {
+        input: document.getElementById("sab"),
+        modificador: document.getElementById("mod-sab"),
+        salvacion: document.getElementById("salvacion-sab"),
+        habilidades: {
+            medicina: document.getElementById("habilidad-medicina"),
+            percepcion: document.getElementById("habilidad-percepcion"),
+            perspicacia: document.getElementById("habilidad-perspicacia"),
+            supervivencia: document.getElementById("habilidad-supervivencia"),
+            animales: document.getElementById("habilidad-animales")
+        }
+    },
+
+    car: {
+        input: document.getElementById("car"),
+        modificador: document.getElementById("mod-car"),
+        salvacion: document.getElementById("salvacion-car"),
+        habilidades: {
+            engano: document.getElementById("habilidad-engano"),
+            interpretacion: document.getElementById("habilidad-interpretacion"),
+            intimidacion: document.getElementById("habilidad-intimidacion"),
+            persuasion: document.getElementById("habilidad-persuasion")
+        }
+    }
+};
+
 function limitarNumero(valor, minimo, maximo) {
     let numero = parseInt(valor);
 
@@ -49,6 +116,23 @@ function limitarNumero(valor, minimo, maximo) {
 
 function formatearNumero(numero) {
     return numero.toLocaleString("es-ES");
+}
+
+function formatearModificador(numero) {
+    if (numero >= 0) {
+        return `+${numero}`;
+    }
+
+    return `${numero}`;
+}
+
+function calcularModificador(puntuacion) {
+    return Math.floor((puntuacion - 10) / 2);
+}
+
+function obtenerCompetenciaActual() {
+    const textoCompetencia = valorCompetencia.textContent.replace("+", "");
+    return parseInt(textoCompetencia);
 }
 
 function obtenerPxPorNivel(nivel) {
@@ -89,6 +173,7 @@ function generarTablaPx() {
             inputPx.value = fila.px;
 
             actualizarCompetencia();
+            actualizarAtributos();
             resaltarNivelActual();
         });
 
@@ -129,12 +214,15 @@ function actualizarDesdeNivel() {
 
     if (modoProgreso.value === "hitos") {
         actualizarCompetencia();
+        actualizarAtributos();
         resaltarNivelActual();
         return;
     }
 
     inputPx.value = obtenerPxPorNivel(nivel);
+
     actualizarCompetencia();
+    actualizarAtributos();
     resaltarNivelActual();
 }
 
@@ -145,6 +233,7 @@ function actualizarDesdePx() {
     inputNivel.value = obtenerNivelPorPx(px);
 
     actualizarCompetencia();
+    actualizarAtributos();
     resaltarNivelActual();
 }
 
@@ -166,10 +255,65 @@ function actualizarModoProgreso() {
     }
 }
 
+function actualizarAtributos() {
+    const competencia = obtenerCompetenciaActual();
+
+    Object.keys(atributos).forEach(claveAtributo => {
+        const atributo = atributos[claveAtributo];
+
+        const puntuacion = limitarNumero(atributo.input.value, 3, 20);
+        const modificador = calcularModificador(puntuacion);
+
+        atributo.input.value = puntuacion;
+        atributo.modificador.textContent = formatearModificador(modificador);
+
+        const botonSalvacion = document.querySelector(
+            `.competencia-btn[data-atributo="${claveAtributo}"][data-habilidad="salvacion"]`
+        );
+
+        let totalSalvacion = modificador;
+
+        if (botonSalvacion.classList.contains("activa")) {
+            totalSalvacion += competencia;
+        }
+
+        atributo.salvacion.textContent = formatearModificador(totalSalvacion);
+
+        Object.keys(atributo.habilidades).forEach(claveHabilidad => {
+            const botonHabilidad = document.querySelector(
+                `.competencia-btn[data-atributo="${claveAtributo}"][data-habilidad="${claveHabilidad}"]`
+            );
+
+            let totalHabilidad = modificador;
+
+            if (botonHabilidad.classList.contains("activa")) {
+                totalHabilidad += competencia;
+            }
+
+            atributo.habilidades[claveHabilidad].textContent = formatearModificador(totalHabilidad);
+        });
+    });
+}
+
 generarTablaPx();
 
 inputNivel.addEventListener("input", actualizarDesdeNivel);
 inputPx.addEventListener("input", actualizarDesdePx);
 modoProgreso.addEventListener("change", actualizarModoProgreso);
 
+Object.keys(atributos).forEach(claveAtributo => {
+    atributos[claveAtributo].input.addEventListener("input", actualizarAtributos);
+});
+
+document.querySelectorAll(".competencia-btn").forEach(boton => {
+    boton.addEventListener("click", evento => {
+        evento.stopPropagation();
+
+        boton.classList.toggle("activa");
+
+        actualizarAtributos();
+    });
+});
+
 actualizarModoProgreso();
+actualizarAtributos();

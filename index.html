@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de personaje 5.5</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,6 +16,7 @@
             <div>
                 <h1>Ficha de personaje</h1>
             </div>
+
             <div class="marca-edicion">5.5</div>
         </header>
 
@@ -53,6 +55,7 @@
 
                 <div class="campo">
                     <label for="modoProgreso">Modo de progreso</label>
+
                     <select id="modoProgreso">
                         <option value="px">PX</option>
                         <option value="hitos">Hitos</option>
@@ -61,30 +64,679 @@
 
                 <div class="campo">
                     <label for="nivel">Nivel</label>
+
                     <input type="number" id="nivel" min="1" max="20" value="1">
                 </div>
 
                 <div class="campo campo-px" id="campoPx">
                     <label for="px">PX</label>
+
                     <input type="number" id="px" min="0" max="355000" value="0">
                 </div>
 
                 <div class="campo">
                     <label>Bonificador por competencia</label>
-                    <div class="valor-estatico" id="competencia">+2</div>
+
+                    <div class="valor-estatico" id="competencia">
+                        +2
+                    </div>
                 </div>
 
             </div>
 
             <div class="tabla-px" id="tablaPxContenedor">
+
                 <h2>PX mínimos por nivel</h2>
+
                 <div class="tabla-px-grid" id="tablaPx"></div>
+
             </div>
+
+        </section>
+
+        <section class="bloque-atributos">
+
+            <!-- FUERZA -->
+            <section class="panel atributo-card">
+
+                <div class="atributo-cabecera">
+                    <h2>Fuerza</h2>
+
+                    <div class="atributo-valores">
+
+                        <div class="atributo-modificador" id="mod-fue">
+                            +0
+                        </div>
+
+                        <div class="atributo-puntuacion">
+
+                            <label for="fue">Puntuación</label>
+
+                            <select id="fue">
+				<option value="3">3</option>
+    				<option value="4">4</option>
+ 				<option value="5">5</option>
+			        <option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8" selected>8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+ 				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+			    </select>
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="atributo-lineas">
+
+                    <button class="linea-habilidad">
+
+                        <div class="linea-izquierda">
+
+                            <div
+                                class="competencia-btn"
+                                data-atributo="fue"
+                                data-habilidad="salvacion"
+                            ></div>
+
+                            <span>Tirada de salvación</span>
+
+                        </div>
+
+                        <span
+                            class="valor-habilidad"
+                            id="salvacion-fue"
+                        >
+                            +0
+                        </span>
+
+                    </button>
+
+                    <button class="linea-habilidad">
+
+                        <div class="linea-izquierda">
+
+                            <div
+                                class="competencia-btn"
+                                data-atributo="fue"
+                                data-habilidad="atletismo"
+                            ></div>
+
+                            <span>Atletismo</span>
+
+                        </div>
+
+                        <span
+                            class="valor-habilidad"
+                            id="habilidad-atletismo"
+                        >
+                            +0
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- DESTREZA -->
+            <section class="panel atributo-card">
+
+                <div class="atributo-cabecera">
+                    <h2>Destreza</h2>
+
+                    <div class="atributo-valores">
+
+                        <div class="atributo-modificador" id="mod-des">
+                            +0
+                        </div>
+
+                        <div class="atributo-puntuacion">
+
+                            <label for="des">Puntuación</label>
+
+                            <select id="des">
+				<option value="3">3</option>
+    				<option value="4">4</option>
+ 				<option value="5">5</option>
+			        <option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8" selected>8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+ 				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+			    </select>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="atributo-lineas">
+
+                    <button class="linea-habilidad">
+
+                        <div class="linea-izquierda">
+
+                            <div
+                                class="competencia-btn"
+                                data-atributo="des"
+                                data-habilidad="salvacion"
+                            ></div>
+
+                            <span>Tirada de salvación</span>
+
+                        </div>
+
+                        <span
+                            class="valor-habilidad"
+                            id="salvacion-des"
+                        >
+                            +0
+                        </span>
+
+                    </button>
+
+                    <button class="linea-habilidad">
+
+                        <div class="linea-izquierda">
+
+                            <div
+                                class="competencia-btn"
+                                data-atributo="des"
+                                data-habilidad="acrobacias"
+                            ></div>
+
+                            <span>Acrobacias</span>
+
+                        </div>
+
+                        <span
+                            class="valor-habilidad"
+                            id="habilidad-acrobacias"
+                        >
+                            +0
+                        </span>
+
+                    </button>
+
+                    <button class="linea-habilidad">
+
+                        <div class="linea-izquierda">
+
+                            <div
+                                class="competencia-btn"
+                                data-atributo="des"
+                                data-habilidad="juego-manos"
+                            ></div>
+
+                            <span>Juego de manos</span>
+
+                        </div>
+
+                        <span
+                            class="valor-habilidad"
+                            id="habilidad-juego-manos"
+                        >
+                            +0
+                        </span>
+
+                    </button>
+
+                    <button class="linea-habilidad">
+
+                        <div class="linea-izquierda">
+
+                            <div
+                                class="competencia-btn"
+                                data-atributo="des"
+                                data-habilidad="sigilo"
+                            ></div>
+
+                            <span>Sigilo</span>
+
+                        </div>
+
+                        <span
+                            class="valor-habilidad"
+                            id="habilidad-sigilo"
+                        >
+                            +0
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- CONSTITUCIÓN -->
+            <section class="panel atributo-card">
+
+                <div class="atributo-cabecera">
+                    <h2>Constitución</h2>
+
+                    <div class="atributo-valores">
+
+                        <div class="atributo-modificador" id="mod-con">
+                            +0
+                        </div>
+
+                        <div class="atributo-puntuacion">
+
+                            <label for="con">Puntuación</label>
+
+                            <select id="con">
+				<option value="3">3</option>
+    				<option value="4">4</option>
+ 				<option value="5">5</option>
+			        <option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8" selected>8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+ 				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+			    </select>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="atributo-lineas">
+
+                    <button class="linea-habilidad">
+
+                        <div class="linea-izquierda">
+
+                            <div
+                                class="competencia-btn"
+                                data-atributo="con"
+                                data-habilidad="salvacion"
+                            ></div>
+
+                            <span>Tirada de salvación</span>
+
+                        </div>
+
+                        <span
+                            class="valor-habilidad"
+                            id="salvacion-con"
+                        >
+                            +0
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- INTELIGENCIA -->
+            <section class="panel atributo-card">
+
+                <div class="atributo-cabecera">
+                    <h2>Inteligencia</h2>
+
+                    <div class="atributo-valores">
+
+                        <div class="atributo-modificador" id="mod-int">
+                            +0
+                        </div>
+
+                        <div class="atributo-puntuacion">
+
+                            <label for="int">Puntuación</label>
+
+                            <select id="int">
+				<option value="3">3</option>
+    				<option value="4">4</option>
+ 				<option value="5">5</option>
+			        <option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8" selected>8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+ 				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+			    </select>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="atributo-lineas">
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="int" data-habilidad="salvacion"></div>
+                            <span>Tirada de salvación</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="salvacion-int">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="int" data-habilidad="arcano"></div>
+                            <span>Conocimiento arcano</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-arcano">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="int" data-habilidad="historia"></div>
+                            <span>Historia</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-historia">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="int" data-habilidad="investigacion"></div>
+                            <span>Investigación</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-investigacion">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="int" data-habilidad="naturaleza"></div>
+                            <span>Naturaleza</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-naturaleza">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="int" data-habilidad="religion"></div>
+                            <span>Religión</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-religion">
+                            +0
+                        </span>
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- SABIDURÍA -->
+            <section class="panel atributo-card">
+
+                <div class="atributo-cabecera">
+                    <h2>Sabiduría</h2>
+
+                    <div class="atributo-valores">
+
+                        <div class="atributo-modificador" id="mod-sab">
+                            +0
+                        </div>
+
+                        <div class="atributo-puntuacion">
+
+                            <label for="sab">Puntuación</label>
+
+                            <select id="sab">
+				<option value="3">3</option>
+    				<option value="4">4</option>
+ 				<option value="5">5</option>
+			        <option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8" selected>8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+ 				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+			    </select>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="atributo-lineas">
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="sab" data-habilidad="salvacion"></div>
+                            <span>Tirada de salvación</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="salvacion-sab">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="sab" data-habilidad="medicina"></div>
+                            <span>Medicina</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-medicina">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="sab" data-habilidad="percepcion"></div>
+                            <span>Percepción</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-percepcion">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="sab" data-habilidad="perspicacia"></div>
+                            <span>Perspicacia</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-perspicacia">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="sab" data-habilidad="supervivencia"></div>
+                            <span>Supervivencia</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-supervivencia">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="sab" data-habilidad="animales"></div>
+                            <span>Trato con animales</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-animales">
+                            +0
+                        </span>
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- CARISMA -->
+            <section class="panel atributo-card">
+
+                <div class="atributo-cabecera">
+                    <h2>Carisma</h2>
+
+                    <div class="atributo-valores">
+
+                        <div class="atributo-modificador" id="mod-car">
+                            +0
+                        </div>
+
+                        <div class="atributo-puntuacion">
+
+                            <label for="car">Puntuación</label>
+
+                            <select id="car">
+				<option value="3">3</option>
+    				<option value="4">4</option>
+ 				<option value="5">5</option>
+			        <option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8" selected>8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+ 				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+			    </select>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="atributo-lineas">
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="car" data-habilidad="salvacion"></div>
+                            <span>Tirada de salvación</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="salvacion-car">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="car" data-habilidad="engano"></div>
+                            <span>Engaño</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-engano">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="car" data-habilidad="interpretacion"></div>
+                            <span>Interpretación</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-interpretacion">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="car" data-habilidad="intimidacion"></div>
+                            <span>Intimidación</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-intimidacion">
+                            +0
+                        </span>
+                    </button>
+
+                    <button class="linea-habilidad">
+                        <div class="linea-izquierda">
+                            <div class="competencia-btn" data-atributo="car" data-habilidad="persuasion"></div>
+                            <span>Persuasión</span>
+                        </div>
+
+                        <span class="valor-habilidad" id="habilidad-persuasion">
+                            +0
+                        </span>
+                    </button>
+
+                </div>
+
+            </section>
 
         </section>
 
     </main>
 
     <script src="script.js"></script>
+
 </body>
 </html>

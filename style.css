@@ -6,11 +6,15 @@
 
 body {
     min-height: 100vh;
+
     background:
         radial-gradient(circle at top, rgba(255,255,255,0.65), transparent 35%),
         #d8d1c2;
+
     color: #2b2925;
+
     font-family: Georgia, "Times New Roman", serif;
+
     padding: 16px;
 }
 
@@ -24,17 +28,22 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 16px;
+
     background: #f4f0e7;
+
     border: 2px solid #686154;
     border-radius: 6px;
+
     padding: 18px 20px;
     margin-bottom: 16px;
+
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
 h1 {
     text-transform: uppercase;
     letter-spacing: 1.5px;
+
     font-size: clamp(1.45rem, 5vw, 2.3rem);
     line-height: 1;
 }
@@ -42,40 +51,52 @@ h1 {
 h2 {
     text-transform: uppercase;
     letter-spacing: 1px;
+
     font-size: 0.82rem;
-    margin-bottom: 10px;
+
     color: #4d493f;
 }
 
 .marca-edicion {
     width: 62px;
     height: 62px;
+
     border: 2px solid #686154;
     border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background: #ede7da;
+
     font-size: 1.3rem;
     font-weight: bold;
-    background: #ede7da;
 }
 
 .panel {
     position: relative;
+
     background: #f7f3ea;
+
     border: 2px solid #686154;
     border-radius: 6px;
+
     padding: 18px;
     margin-bottom: 16px;
+
     box-shadow: 0 4px 10px rgba(0,0,0,0.10);
 }
 
 .panel::before,
 .panel::after {
     content: "";
+
     position: absolute;
+
     width: 18px;
     height: 18px;
+
     border-color: #686154;
     border-style: solid;
 }
@@ -83,18 +104,22 @@ h2 {
 .panel::before {
     top: 5px;
     left: 5px;
+
     border-width: 2px 0 0 2px;
 }
 
 .panel::after {
     right: 5px;
     bottom: 5px;
+
     border-width: 0 2px 2px 0;
 }
 
 .datos-personaje {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     gap: 14px;
 }
 
@@ -102,30 +127,20 @@ h2 {
     grid-column: span 2;
 }
 
-.bloque-progreso {
-    display: grid;
-    grid-template-columns: minmax(360px, 1fr) 430px;
-    gap: 22px;
-    align-items: start;
-}
-
-.bloque-nivel {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
-    gap: 14px 22px;
-}
-
 .campo {
     display: flex;
     flex-direction: column;
+
     gap: 5px;
 }
 
 label {
     text-transform: uppercase;
     letter-spacing: 1px;
+
     font-size: 0.68rem;
     font-weight: bold;
+
     color: #4d493f;
 }
 
@@ -133,19 +148,26 @@ input,
 select {
     width: 100%;
     min-height: 42px;
+
     background: transparent;
+
     border: none;
     border-bottom: 2px solid #8a8274;
+
     color: #2b2925;
+
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1.1rem;
+
     padding: 6px 4px;
 }
 
 input:focus,
 select:focus {
     outline: none;
+
     border-bottom-color: #2b2925;
+
     background: rgba(255,255,255,0.35);
 }
 
@@ -160,49 +182,79 @@ input[readonly] {
 
 .valor-estatico {
     min-height: 42px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-bottom: 2px solid #8a8274;
+
     font-size: 1.3rem;
     font-weight: bold;
 }
 
+.bloque-progreso {
+    display: grid;
+
+    grid-template-columns: minmax(360px, 1fr) 430px;
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+.bloque-nivel {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+
+    gap: 14px 22px;
+}
+
 .tabla-px {
     border-left: 2px solid #8a8274;
+
     padding-left: 18px;
+}
+
+.tabla-px h2 {
+    margin-bottom: 12px;
 }
 
 .tabla-px-grid {
     display: grid;
+
     grid-template-columns: repeat(2, minmax(190px, 1fr));
+
     gap: 7px 10px;
 }
 
 .fila-px {
     width: 100%;
     min-height: 34px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     gap: 8px;
 
     padding: 5px 8px;
 
     background: #f1eee6;
+
     border: 2px solid #686154;
+
     color: #2b2925;
 
     font-family: Georgia, "Times New Roman", serif;
     font-size: 0.82rem;
+
     line-height: 1;
+
     white-space: nowrap;
 
     cursor: pointer;
-}
-
-.fila-px span {
-    white-space: nowrap;
 }
 
 .fila-px span:first-child {
@@ -215,8 +267,144 @@ input[readonly] {
 
 .fila-px.activa {
     background: #e3d8c2;
+
     outline: 2px solid #686154;
     border-radius: 4px;
+}
+
+/* =========================
+   ATRIBUTOS
+========================= */
+
+.bloque-atributos {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+.atributo-card {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.atributo-cabecera {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.atributo-valores {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.atributo-modificador {
+    width: 88px;
+    height: 88px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid #8a8274;
+    border-radius: 50%;
+
+    background: #f1eee6;
+
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.atributo-puntuacion {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.atributo-puntuacion input {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.atributo-lineas {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.linea-habilidad {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+
+    background: transparent;
+
+    border: none;
+    border-bottom: 1px solid rgba(104, 97, 84, 0.35);
+
+    padding: 6px 0;
+
+    color: #2b2925;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+
+    text-align: left;
+}
+
+.linea-izquierda {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.competencia-btn {
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid #686154;
+    border-radius: 50%;
+
+    background: transparent;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+.competencia-btn.activa {
+    background: #2b2925;
+
+    box-shadow: inset 0 0 0 3px #f7f3ea;
+}
+
+.valor-habilidad {
+    min-width: 34px;
+
+    text-align: right;
+
+    font-weight: bold;
 }
 
 .oculto {
@@ -232,8 +420,16 @@ input[readonly] {
     .tabla-px {
         border-left: none;
         border-top: 2px solid #8a8274;
+
         padding-left: 0;
         padding-top: 14px;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .bloque-atributos {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -250,6 +446,7 @@ input[readonly] {
     .marca-edicion {
         width: 52px;
         height: 52px;
+
         font-size: 1rem;
     }
 
@@ -264,5 +461,14 @@ input[readonly] {
 
     .tabla-px-grid {
         grid-template-columns: 1fr;
+    }
+
+    .atributo-valores {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .atributo-puntuacion {
+        width: 100%;
     }
 }
