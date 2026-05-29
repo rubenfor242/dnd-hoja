@@ -144,6 +144,17 @@ label {
     color: #4d493f;
 }
 
+.nota-label {
+    text-transform: none;
+
+    font-size: 0.68rem;
+    font-weight: normal;
+
+    letter-spacing: 0;
+
+    opacity: 0.75;
+}
+
 input,
 select {
     width: 100%;
@@ -178,6 +189,77 @@ input[type="number"] {
 input[readonly] {
     opacity: 0.65;
     cursor: not-allowed;
+}
+
+/* =========================
+   CA / PG / DEFENSA
+========================= */
+
+.bloque-defensa {
+    display: grid;
+    gap: 16px;
+}
+
+.bloque-ca {
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr;
+    gap: 14px;
+    align-items: end;
+}
+
+.campo-escudo {
+    align-items: center;
+}
+
+.escudo-btn {
+    width: 34px;
+    height: 34px;
+    margin-top: 4px;
+}
+
+.campo-ca-total {
+    gap: 10px;
+}
+
+.subcampo-ca {
+    margin-top: 4px;
+}
+
+.subcampo-ca label {
+    font-size: 0.58rem;
+}
+
+.subcampo-ca select {
+    min-height: 34px;
+    font-size: 0.95rem;
+}
+
+.competencias-armadura {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+
+    margin-top: 10px;
+}
+
+.competencia-armadura {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    font-size: 0.8rem;
+}
+
+.competencia-armadura .competencia-btn {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 650px) {
+
+    .bloque-ca {
+        grid-template-columns: 1fr;
+    }
 }
 
 .valor-estatico {

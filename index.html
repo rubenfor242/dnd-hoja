@@ -94,6 +94,69 @@
 
         </section>
 
+        <section class="panel bloque-defensa">
+
+            <div class="bloque-ca">
+
+                <div class="campo">
+                    <label for="caBase">CA base <span class="nota-label">(10 o armadura)</span></label>
+                    <input type="number" id="caBase" min="0" max="99" value="10">
+
+                    <div class="competencias-armadura">
+
+                        <div class="competencia-armadura">
+                            <button type="button" class="competencia-btn"></button>
+                            <span>Ligeras</span>
+                        </div>
+
+                        <div class="competencia-armadura">
+                            <button type="button" class="competencia-btn"></button>
+                            <span>Medias</span>
+                        </div>
+
+                        <div class="competencia-armadura">
+                            <button type="button" class="competencia-btn"></button>
+                            <span>Pesadas</span>
+                        </div>
+
+                        <div class="competencia-armadura">
+                            <button type="button" class="competencia-btn"></button>
+                            <span>Escudos</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="campo campo-escudo">
+                    <label>Escudo <span class="nota-label">(+2 CA)</span></label>
+
+                    <button type="button" class="competencia-btn escudo-btn" id="botonEscudo"></button>
+                </div>
+
+                <div class="campo campo-ca-total">
+                    <label>CA total <span class="nota-label" id="notaCaTotal">(base + DES + mods.)</span></label>
+
+                    <div class="valor-estatico" id="caTotal">
+                        10
+                    </div>
+
+                    <div class="subcampo-ca">
+                        <label for="tipoArmadura">Tipo de armadura</label>
+
+                        <select id="tipoArmadura">
+                            <option value="sin">Sin armadura</option>
+                            <option value="ligera">Ligera</option>
+                            <option value="media">Media</option>
+                            <option value="pesada">Pesada</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
         <section class="bloque-atributos">
 
             <!-- FUERZA -->

@@ -6,6 +6,12 @@ const campoPx = document.getElementById("campoPx");
 const tablaPxContenedor = document.getElementById("tablaPxContenedor");
 const tablaPxElemento = document.getElementById("tablaPx");
 
+const inputCaBase = document.getElementById("caBase");
+const botonEscudo = document.getElementById("botonEscudo");
+const valorCaTotal = document.getElementById("caTotal");
+const tipoArmadura = document.getElementById("tipoArmadura");
+const notaCaTotal = document.getElementById("notaCaTotal");
+
 const tablaPx = [
     { nivel: 1, px: 0 },
     { nivel: 2, px: 300 },
@@ -237,6 +243,47 @@ function actualizarDesdePx() {
     resaltarNivelActual();
 }
 
+function actualizarCA() {
+    const caBase = limitarNumero(inputCaBase.value, 0, 99);
+    const puntuacionDestreza = limitarNumero(atributos.des.input.value, 3, 20);
+    const modificadorDestreza = calcularModificador(puntuacionDestreza);
+    const armadura = tipoArmadura.value;
+
+    inputCaBase.value = caBase;
+
+    let modificadorDestrezaAplicado = modificadorDestreza;
+    let textoNota = "(base + DES + mods.)";
+
+    if (armadura === "sin") {
+        modificadorDestrezaAplicado = modificadorDestreza;
+        textoNota = "(base + DES completo + mods.)";
+    }
+
+    if (armadura === "ligera") {
+        modificadorDestrezaAplicado = modificadorDestreza;
+        textoNota = "(base + DES completo + mods.)";
+    }
+
+    if (armadura === "media") {
+        modificadorDestrezaAplicado = Math.min(modificadorDestreza, 2);
+        textoNota = "(base + DES máx. +2 + mods.)";
+    }
+
+    if (armadura === "pesada") {
+        modificadorDestrezaAplicado = 0;
+        textoNota = "(base + sin DES + mods.)";
+    }
+
+    let caTotal = caBase + modificadorDestrezaAplicado;
+
+    if (botonEscudo.classList.contains("activa")) {
+        caTotal += 2;
+    }
+
+    valorCaTotal.textContent = caTotal;
+    notaCaTotal.textContent = textoNota;
+}
+
 function actualizarModoProgreso() {
     if (modoProgreso.value === "px") {
         campoPx.classList.remove("oculto");
@@ -301,13 +348,23 @@ inputNivel.addEventListener("input", actualizarDesdeNivel);
 inputPx.addEventListener("input", actualizarDesdePx);
 modoProgreso.addEventListener("change", actualizarModoProgreso);
 
+inputCaBase.addEventListener("input", actualizarCA);
+tipoArmadura.addEventListener("change", actualizarCA);
+
 Object.keys(atributos).forEach(claveAtributo => {
-    atributos[claveAtributo].input.addEventListener("input", actualizarAtributos);
+    atributos[claveAtributo].input.addEventListener("change", () => {
+        actualizarAtributos();
+        actualizarCA();
+    });
 });
 
 document.querySelectorAll(".competencia-btn").forEach(boton => {
     boton.addEventListener("click", evento => {
         evento.stopPropagation();
+
+        if (boton.id === "botonEscudo") {
+            return;
+        }
 
         boton.classList.toggle("activa");
 
@@ -315,5 +372,12 @@ document.querySelectorAll(".competencia-btn").forEach(boton => {
     });
 });
 
+botonEscudo.addEventListener("click", () => {
+    botonEscudo.classList.toggle("activa");
+
+    actualizarCA();
+});
+
 actualizarModoProgreso();
 actualizarAtributos();
+actualizarCA();
