@@ -156,7 +156,8 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
     width: 100%;
     min-height: 42px;
 
@@ -174,12 +175,33 @@ select {
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
     outline: none;
 
     border-bottom-color: #2b2925;
 
     background: rgba(255,255,255,0.35);
+}
+
+textarea {
+    width: 100%;
+
+    resize: vertical;
+
+    background: transparent;
+
+    border: none;
+    border-bottom: 2px solid #8a8274;
+
+    color: #2b2925;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+
+    padding: 6px 4px;
+
+    line-height: 1.3;
 }
 
 input[type="number"] {
@@ -828,7 +850,7 @@ input[readonly] {
         font-size: 0.85rem;
     }
 
-    .tabla-combate input:nth-of-type(4n + 4) {
+    .tabla-combate textarea {
         grid-column: 1 / -1;
 
         min-height: 58px;
