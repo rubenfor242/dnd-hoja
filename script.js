@@ -12,9 +12,11 @@ const competenciaEscudos = document.getElementById("competenciaEscudos");
 const valorCaTotal = document.getElementById("caTotal");
 const tipoArmadura = document.getElementById("tipoArmadura");
 const notaCaTotal = document.getElementById("notaCaTotal");
+
 const inputPgActuales = document.getElementById("pgActuales");
 const inputPgMaximos = document.getElementById("pgMaximos");
 const inputPgTemporales = document.getElementById("pgTemporales");
+
 const valorIniciativa = document.getElementById("iniciativa");
 const valorPercepcionPasiva = document.getElementById("percepcionPasiva");
 const botonInspiracion = document.getElementById("botonInspiracion");
@@ -188,6 +190,8 @@ function generarTablaPx() {
 
             actualizarCompetencia();
             actualizarAtributos();
+            actualizarCA();
+            actualizarEstado();
             resaltarNivelActual();
         });
 
@@ -226,17 +230,14 @@ function actualizarDesdeNivel() {
 
     inputNivel.value = nivel;
 
-    if (modoProgreso.value === "hitos") {
-        actualizarCompetencia();
-        actualizarAtributos();
-        resaltarNivelActual();
-        return;
+    if (modoProgreso.value !== "hitos") {
+        inputPx.value = obtenerPxPorNivel(nivel);
     }
-
-    inputPx.value = obtenerPxPorNivel(nivel);
 
     actualizarCompetencia();
     actualizarAtributos();
+    actualizarCA();
+    actualizarEstado();
     resaltarNivelActual();
 }
 
@@ -248,6 +249,8 @@ function actualizarDesdePx() {
 
     actualizarCompetencia();
     actualizarAtributos();
+    actualizarCA();
+    actualizarEstado();
     resaltarNivelActual();
 }
 
@@ -296,7 +299,6 @@ function actualizarCA() {
 }
 
 function actualizarEstado() {
-
     const puntuacionDestreza = limitarNumero(
         atributos.des.input.value,
         3,
@@ -393,9 +395,38 @@ function actualizarAtributos() {
                 totalHabilidad += competencia;
             }
 
-            atributo.habilidades[claveHabilidad].textContent = formatearModificador(totalHabilidad);
+            atributo.habilidades[claveHabilidad].textContent =
+                formatearModificador(totalHabilidad);
         });
     });
+}
+
+function actualizarCirculosMuerte(tipo, cantidad) {
+    const fila = document.querySelector(`.fila-muerte[data-tipo="${tipo}"]`);
+    const circulos = fila.querySelectorAll(".muerte-circulo");
+
+    circulos.forEach((circulo, indice) => {
+        if (indice < cantidad) {
+            circulo.classList.add("activa");
+        } else {
+            circulo.classList.remove("activa");
+        }
+    });
+}
+
+function obtenerCantidadMuerte(tipo) {
+    const fila = document.querySelector(`.fila-muerte[data-tipo="${tipo}"]`);
+    const circulosActivos = fila.querySelectorAll(".muerte-circulo.activa");
+
+    return circulosActivos.length;
+}
+
+function actualizarInspiracion() {
+    if (botonInspiracion.classList.contains("activa")) {
+        inspiracionFlotante.classList.remove("oculto");
+    } else {
+        inspiracionFlotante.classList.add("oculto");
+    }
 }
 
 generarTablaPx();
@@ -430,6 +461,7 @@ document.querySelectorAll(".competencia-btn").forEach(boton => {
         boton.classList.toggle("activa");
 
         actualizarAtributos();
+        actualizarEstado();
     });
 });
 
@@ -442,26 +474,6 @@ botonEscudo.addEventListener("click", () => {
 competenciaEscudos.addEventListener("click", () => {
     actualizarCA();
 });
-
-function actualizarCirculosMuerte(tipo, cantidad) {
-    const fila = document.querySelector(`.fila-muerte[data-tipo="${tipo}"]`);
-    const circulos = fila.querySelectorAll(".muerte-circulo");
-
-    circulos.forEach((circulo, indice) => {
-        if (indice < cantidad) {
-            circulo.classList.add("activa");
-        } else {
-            circulo.classList.remove("activa");
-        }
-    });
-}
-
-function obtenerCantidadMuerte(tipo) {
-    const fila = document.querySelector(`.fila-muerte[data-tipo="${tipo}"]`);
-    const circulosActivos = fila.querySelectorAll(".muerte-circulo.activa");
-
-    return circulosActivos.length;
-}
 
 document.querySelectorAll(".boton-muerte").forEach(boton => {
     boton.addEventListener("click", () => {
@@ -480,14 +492,6 @@ document.getElementById("reiniciarMuerte").addEventListener("click", () => {
     actualizarCirculosMuerte("exitos", 0);
     actualizarCirculosMuerte("fallos", 0);
 });
-
-function actualizarInspiracion() {
-    if (botonInspiracion.classList.contains("activa")) {
-        inspiracionFlotante.classList.remove("oculto");
-    } else {
-        inspiracionFlotante.classList.add("oculto");
-    }
-}
 
 botonInspiracion.addEventListener("click", () => {
     botonInspiracion.classList.toggle("activa");
