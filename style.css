@@ -442,13 +442,18 @@ input[readonly] {
 .tabla-combate {
     display: grid;
 
-    grid-template-columns: 0.7fr 0.5fr 0.6fr 1.9fr;
+    grid-template-columns: 0.7fr 0.32fr 0.78fr 1.9fr;
 
     gap: 10px;
 }
 
 .tabla-combate input {
     min-width: 0;
+}
+
+.tabla-combate input,
+.cabecera-combate {
+    font-size: 0.9rem;
 }
 
 .cabecera-combate {
@@ -797,7 +802,7 @@ input[readonly] {
     .tabla-combate {
         display: grid;
 
-        grid-template-columns: 1fr 0.6fr 0.8fr;
+        grid-template-columns: 1fr 0.4fr 1fr;
 
         gap: 8px 10px;
     }
@@ -807,7 +812,9 @@ input[readonly] {
 
         margin-top: 0;
 
-        font-size: 0.62rem;
+        font-size: 0.55rem;
+
+        letter-spacing: 0.5px;
     }
 
     .cabecera-combate:nth-child(4) {
