@@ -850,14 +850,21 @@ input[readonly] {
         font-size: 0.85rem;
     }
 
+    .tabla-combate input {
+        border-bottom-width: 1px;
+    }
+
     .tabla-combate textarea {
         grid-column: 1 / -1;
 
         min-height: 58px;
 
-        margin-bottom: 12px;
+        margin-bottom: 18px;
+        padding-bottom: 10px;
 
         font-size: 0.85rem;
+
+        border-bottom: 2px solid rgba(104, 97, 84, 0.35);
     }
 
     .atributo-valores {
