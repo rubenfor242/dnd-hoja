@@ -8,6 +8,7 @@ const tablaPxElemento = document.getElementById("tablaPx");
 
 const inputCaBase = document.getElementById("caBase");
 const botonEscudo = document.getElementById("botonEscudo");
+const competenciaEscudos = document.getElementById("competenciaEscudos");
 const valorCaTotal = document.getElementById("caTotal");
 const tipoArmadura = document.getElementById("tipoArmadura");
 const notaCaTotal = document.getElementById("notaCaTotal");
@@ -283,7 +284,10 @@ function actualizarCA() {
 
     let caTotal = caBase + modificadorDestrezaAplicado;
 
-    if (botonEscudo.classList.contains("activa")) {
+    if (
+        botonEscudo.classList.contains("activa") &&
+        competenciaEscudos.classList.contains("activa")
+    ) {
         caTotal += 2;
     }
 
@@ -432,6 +436,10 @@ document.querySelectorAll(".competencia-btn").forEach(boton => {
 botonEscudo.addEventListener("click", () => {
     botonEscudo.classList.toggle("activa");
 
+    actualizarCA();
+});
+
+competenciaEscudos.addEventListener("click", () => {
     actualizarCA();
 });
 
