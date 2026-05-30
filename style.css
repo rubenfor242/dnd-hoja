@@ -810,6 +810,10 @@ input[readonly] {
 
 @media (max-width: 650px) {
 
+    .notas-combate {
+        line-height: 1.05;
+    }
+
     body {
         padding: 10px;
     }
