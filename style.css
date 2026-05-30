@@ -442,7 +442,7 @@ input[readonly] {
 .tabla-combate {
     display: grid;
 
-    grid-template-columns: 22% 13% 16% 49%;
+    grid-template-columns: 0.7fr 0.5fr 0.6fr 1.9fr;
 
     gap: 10px;
 }
@@ -794,8 +794,33 @@ input[readonly] {
         grid-template-columns: 1fr;
     }
 
+    .tabla-combate {
+        display: flex;
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
     .cabecera-combate {
-        margin-top: 10px;
+        display: none;
+    }
+
+    .tabla-combate input {
+        min-height: 34px;
+    }
+
+    .tabla-combate input:nth-child(4n + 1),
+    .tabla-combate input:nth-child(4n + 2),
+    .tabla-combate input:nth-child(4n + 3) {
+        width: 100%;
+    }
+
+    .tabla-combate input:nth-child(4n + 4) {
+        width: 100%;
+        margin-top: -6px;
+        margin-bottom: 10px;
+
+        font-size: 0.95rem;
     }
 
     .atributo-valores {
