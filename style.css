@@ -451,6 +451,20 @@ input[readonly] {
     background: #e4cf99;
 }
 
+.bloque-competencias-equipo textarea {
+    width: 100%;
+
+    min-height: 52px;
+
+    resize: vertical;
+}
+
+.competencias-equipo-grid {
+    display: grid;
+
+    gap: 18px;
+}
+
 /* =========================
    COMBATE
 ========================= */
@@ -828,6 +842,12 @@ input[readonly] {
 
     .circulos-muerte {
         justify-content: center;
+    }
+
+    .bloque-competencias-equipo textarea {
+        min-height: 42px;
+
+        font-size: 0.9rem;
     }
 
     .tabla-combate {
