@@ -465,6 +465,26 @@ input[readonly] {
     gap: 18px;
 }
 
+.bloque-rasgos textarea {
+    width: 100%;
+
+    resize: vertical;
+
+    min-height: 180px;
+}
+
+.bloque-rasgos-clase {
+    margin-bottom: 22px;
+}
+
+.bloques-inferiores-rasgos {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
 /* =========================
    COMBATE
 ========================= */
@@ -848,6 +868,14 @@ input[readonly] {
         min-height: 42px;
 
         font-size: 0.9rem;
+    }
+
+    .bloques-inferiores-rasgos {
+        grid-template-columns: 1fr;
+    }
+
+    .bloque-rasgos textarea {
+        min-height: 120px;
     }
 
     .tabla-combate {
