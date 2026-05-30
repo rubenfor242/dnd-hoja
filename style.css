@@ -855,9 +855,9 @@ input[readonly] {
     }
 
     .bloque-estado {
-        grid-template-columns: repeat(5, minmax(90px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
 
-        overflow-x: auto;
+        gap: 14px;
     }
 
     .fila-muerte {
