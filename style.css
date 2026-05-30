@@ -855,6 +855,7 @@ input[readonly] {
     }
 
     .tabla-combate textarea {
+    	position: relative;
         grid-column: 1 / -1;
 
         min-height: 58px;
@@ -864,7 +865,20 @@ input[readonly] {
 
         font-size: 0.85rem;
 
-        border-bottom: 2px solid rgba(104, 97, 84, 0.35);
+    }
+
+    .tabla-combate textarea::after {
+        content: "";
+
+        position: absolute;
+
+        left: -6px;
+        right: -6px;
+        bottom: -14px;
+
+        height: 2px;
+
+        background: rgba(104, 97, 84, 0.35);
     }
 
     .atributo-valores {
