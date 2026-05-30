@@ -748,6 +748,10 @@ input[readonly] {
     display: none;
 }
 
+.separador-arma {
+    display: none;
+}
+
 @media (max-width: 900px) {
 
     .bloque-progreso {
@@ -871,6 +875,8 @@ input[readonly] {
     }
 
     .separador-arma {
+        display: block;
+
         grid-column: 1 / -1;
 
         height: 2px;
