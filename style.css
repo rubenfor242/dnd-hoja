@@ -802,7 +802,7 @@ input[readonly] {
     .tabla-combate {
         display: grid;
 
-        grid-template-columns: 1fr 0.4fr 1fr;
+        grid-template-columns: 1fr 0.42fr 1fr;
 
         gap: 8px 10px;
     }
@@ -813,25 +813,29 @@ input[readonly] {
         margin-top: 0;
 
         font-size: 0.55rem;
-
         letter-spacing: 0.5px;
     }
 
     .cabecera-combate:nth-child(4) {
-        display: none;
+        display: block;
+        grid-column: 1 / -1;
     }
 
     .tabla-combate input {
         min-width: 0;
         min-height: 34px;
 
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
 
     .tabla-combate input:nth-of-type(4n + 4) {
         grid-column: 1 / -1;
 
+        min-height: 58px;
+
         margin-bottom: 12px;
+
+        font-size: 0.85rem;
     }
 
     .atributo-valores {
