@@ -603,6 +603,93 @@ input[readonly] {
 }
 
 /* =========================
+   CONJUROS PREPARADOS
+========================= */
+
+.bloque-conjuros-preparados {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.tabla-conjuros-preparados {
+    display: grid;
+
+    grid-template-columns: 60px 1.3fr 0.8fr 0.7fr 0.8fr 1.3fr;
+
+    gap: 10px;
+}
+
+.cabecera-conjuro {
+    text-transform: uppercase;
+
+    font-size: 0.62rem;
+    font-weight: bold;
+    letter-spacing: 0.7px;
+
+    color: #4d493f;
+}
+
+.tabla-conjuros-preparados input,
+.tabla-conjuros-preparados textarea {
+    min-width: 0;
+
+    font-size: 0.85rem;
+}
+
+.tabla-conjuros-preparados textarea {
+    min-height: 42px;
+
+    resize: vertical;
+
+    line-height: 1.3;
+}
+
+.conjuro-componentes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+.boton-componente {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: 2px solid #686154;
+
+    color: #4d493f;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.68rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transform: rotate(45deg);
+}
+
+.boton-componente span {
+    transform: rotate(-45deg);
+}
+
+.boton-componente.activa {
+    background: #2b2925;
+
+    color: #f7f3ea;
+
+    box-shadow: inset 0 0 0 3px #f7f3ea;
+}
+
+/* =========================
    COMBATE
 ========================= */
 
@@ -1032,6 +1119,42 @@ input[readonly] {
     .diamante-conjuro {
         width: 16px;
         height: 16px;
+    }
+
+    .tabla-conjuros-preparados {
+        grid-template-columns: 0.45fr 1.2fr 1fr;
+
+        gap: 8px 10px;
+    }
+
+    .cabecera-conjuro {
+        font-size: 0.52rem;
+    }
+
+    .cabecera-conjuro:nth-child(4),
+    .cabecera-conjuro:nth-child(5),
+    .cabecera-conjuro:nth-child(6) {
+        display: none;
+    }
+
+    .conjuro-campo-alcance,
+    .conjuro-componentes,
+    .conjuro-notas {
+        grid-column: 1 / -1;
+    }
+
+    .conjuro-componentes {
+        justify-content: flex-start;
+    }
+
+    .tabla-conjuros-preparados input,
+    .tabla-conjuros-preparados textarea {
+        font-size: 0.82rem;
+    }
+
+    .boton-componente {
+        width: 22px;
+        height: 22px;
     }
 
     .tabla-combate {

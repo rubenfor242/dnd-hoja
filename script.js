@@ -29,6 +29,7 @@ const bonoTempCD = document.getElementById("bonoTempCD");
 const ataqueConjuros = document.getElementById("ataqueConjuros");
 const bonoTempAtaqueConjuro = document.getElementById("bonoTempAtaqueConjuro");
 const reiniciarConjuros = document.getElementById("reiniciarConjuros");
+const tablaConjurosPreparados = document.getElementById("tablaConjurosPreparados");
 
 const tablaPx = [
     { nivel: 1, px: 0 },
@@ -535,6 +536,77 @@ function reiniciarEspaciosConjuro() {
     });
 }
 
+function crearBotonComponente(texto) {
+    const boton = document.createElement("button");
+    const span = document.createElement("span");
+
+    boton.type = "button";
+    boton.classList.add("boton-componente");
+
+    span.textContent = texto;
+
+    boton.appendChild(span);
+
+    boton.addEventListener("click", () => {
+        boton.classList.toggle("activa");
+    });
+
+    return boton;
+}
+
+function crearFilaConjuro() {
+    const inputNivelConjuro = document.createElement("input");
+    inputNivelConjuro.type = "number";
+    inputNivelConjuro.min = "0";
+    inputNivelConjuro.max = "9";
+    inputNivelConjuro.value = "0";
+    inputNivelConjuro.classList.add("conjuro-nivel");
+
+    inputNivelConjuro.addEventListener("input", () => {
+        inputNivelConjuro.value = limitarNumero(
+            inputNivelConjuro.value,
+            0,
+            9
+        );
+    });
+
+    const inputNombre = document.createElement("input");
+    inputNombre.type = "text";
+    inputNombre.classList.add("conjuro-nombre");
+
+    const inputTiempo = document.createElement("input");
+    inputTiempo.type = "text";
+    inputTiempo.classList.add("conjuro-tiempo");
+
+    const inputAlcance = document.createElement("input");
+    inputAlcance.type = "text";
+    inputAlcance.classList.add("conjuro-campo-alcance");
+
+    const componentes = document.createElement("div");
+    componentes.classList.add("conjuro-componentes");
+
+    componentes.appendChild(crearBotonComponente("C"));
+    componentes.appendChild(crearBotonComponente("R"));
+    componentes.appendChild(crearBotonComponente("M"));
+
+    const notas = document.createElement("textarea");
+    notas.rows = 2;
+    notas.classList.add("conjuro-notas");
+
+    tablaConjurosPreparados.appendChild(inputNivelConjuro);
+    tablaConjurosPreparados.appendChild(inputNombre);
+    tablaConjurosPreparados.appendChild(inputTiempo);
+    tablaConjurosPreparados.appendChild(inputAlcance);
+    tablaConjurosPreparados.appendChild(componentes);
+    tablaConjurosPreparados.appendChild(notas);
+}
+
+function generarFilasConjurosPreparados() {
+    for (let i = 0; i < 25; i++) {
+        crearFilaConjuro();
+    }
+}
+
 function actualizarInspiracion() {
     if (botonInspiracion.classList.contains("activa")) {
         inspiracionFlotante.classList.remove("oculto");
@@ -544,6 +616,7 @@ function actualizarInspiracion() {
 }
 
 generarTablaPx();
+generarFilasConjurosPreparados();
 
 inputNivel.addEventListener("input", actualizarDesdeNivel);
 inputPx.addEventListener("input", actualizarDesdePx);
