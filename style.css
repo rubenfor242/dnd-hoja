@@ -927,8 +927,15 @@ input[readonly] {
 
 @media (max-width: 650px) {
 
-    .notas-combate
+    .notas-combate,
     .nota-conjuros {
+        line-height: 1.05;
+    }
+
+    .notas-combate p,
+    .nota-conjuros {
+        margin: 0 0 10px 0;
+
         line-height: 1.05;
     }
 
