@@ -593,12 +593,16 @@ function crearFilaConjuro() {
     notas.rows = 2;
     notas.classList.add("conjuro-notas");
 
+    const separador = document.createElement("div");
+    separador.classList.add("separador-conjuro");
+
     tablaConjurosPreparados.appendChild(inputNivelConjuro);
     tablaConjurosPreparados.appendChild(inputNombre);
     tablaConjurosPreparados.appendChild(inputTiempo);
     tablaConjurosPreparados.appendChild(inputAlcance);
     tablaConjurosPreparados.appendChild(componentes);
     tablaConjurosPreparados.appendChild(notas);
+    tablaConjurosPreparados.appendChild(separador);
 }
 
 function generarFilasConjurosPreparados() {

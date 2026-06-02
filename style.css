@@ -654,6 +654,16 @@ input[readonly] {
     gap: 8px;
 }
 
+.separador-conjuro {
+    grid-column: 1 / -1;
+
+    height: 2px;
+
+    background: #8a8274;
+
+    margin: 2px 0 12px;
+}
+
 .boton-componente {
     width: 24px;
     height: 24px;
