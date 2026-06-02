@@ -486,6 +486,123 @@ input[readonly] {
 }
 
 /* =========================
+   MAGIA
+========================= */
+
+.bloque-magia {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.bloque-aptitud-magica {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 14px;
+
+    align-items: end;
+}
+
+.bloque-espacios-conjuro {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.fila-espacios {
+    display: grid;
+
+    grid-template-columns: 110px 70px 1fr;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+.cabecera-espacios {
+    text-transform: uppercase;
+
+    font-size: 0.68rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    color: #4d493f;
+}
+
+.boton-nivel-conjuro,
+.boton-reiniciar-conjuros {
+    min-height: 34px;
+
+    background: #f1eee6;
+
+    border: 2px solid #686154;
+
+    color: #2b2925;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.boton-nivel-conjuro:hover,
+.boton-reiniciar-conjuros:hover {
+    background: #ebe2d2;
+}
+
+.diamantes-conjuro {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.diamante-conjuro {
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid #686154;
+
+    background: transparent;
+
+    transform: rotate(45deg);
+
+    cursor: pointer;
+}
+
+.diamante-conjuro.gastado {
+    background: #2b2925;
+
+    box-shadow: inset 0 0 0 3px #f7f3ea;
+}
+
+.boton-reiniciar-conjuros {
+    width: fit-content;
+
+    margin-top: 8px;
+    padding: 8px 16px;
+
+    font-size: 0.72rem;
+}
+
+.nota-conjuros {
+    margin: 0;
+
+    font-size: 1rem;
+    line-height: 0.5;
+
+    color: #2b2925;
+}
+
+.nota-conjuros strong {
+    font-weight: bold;
+}
+
+/* =========================
    COMBATE
 ========================= */
 
@@ -880,6 +997,33 @@ input[readonly] {
 
     .bloque-rasgos textarea {
         min-height: 90px;
+    }
+
+    .bloque-aptitud-magica {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+    }
+
+    .fila-espacios {
+        grid-template-columns: 90px 56px 1fr;
+
+        gap: 8px;
+    }
+
+    .cabecera-espacios {
+        grid-template-columns: 90px 56px 1fr;
+
+        font-size: 0.58rem;
+    }
+
+    .boton-nivel-conjuro {
+        font-size: 0.78rem;
+    }
+
+    .diamante-conjuro {
+        width: 16px;
+        height: 16px;
     }
 
     .tabla-combate {

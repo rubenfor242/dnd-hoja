@@ -1120,6 +1120,234 @@
 
         </section>
 
+        <section class="panel bloque-magia">
+
+            <h2>Magia y espacios de conjuro</h2>
+
+            <div class="bloque-aptitud-magica">
+
+                <div class="campo">
+                    <label for="aptitudMagica">Aptitud mágica</label>
+
+                    <select id="aptitudMagica">
+                        <option value="ninguna">Ninguna</option>
+                        <option value="fue">FUE</option>
+                        <option value="des">DES</option>
+                        <option value="con">CON</option>
+                        <option value="int">INT</option>
+                        <option value="sab">SAB</option>
+                        <option value="car">CAR</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label>Mod. aptitud</label>
+
+                    <div class="valor-estatico" id="modificadorAptitudMagica">
+                        +0
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label>CD conjuros</label>
+
+                    <div class="valor-estatico" id="cdConjuros">
+                        8
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="bonoTempCD">Bono temp. CD</label>
+
+                    <input
+                        type="number"
+                        id="bonoTempCD"
+                        min="-99"
+                        max="99"
+                        value="0"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label>Ataque conjuros</label>
+
+                    <div class="valor-estatico" id="ataqueConjuros">
+                        +0
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="bonoTempAtaqueConjuro">Bono temp. ataque</label>
+
+                    <input
+                        type="number"
+                        id="bonoTempAtaqueConjuro"
+                        min="-99"
+                        max="99"
+                        value="0"
+                    >
+                </div>
+
+            </div>
+
+            <div class="separador-bloque"></div>
+
+            <div class="bloque-espacios-conjuro">
+
+                <h2>Espacios de conjuro</h2>
+
+                <div class="fila-espacios cabecera-espacios">
+                    <span>Nivel</span>
+                    <span>Total</span>
+                    <span>Usos</span>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="1">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 1</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="4"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="2">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 2</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="3"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="3">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 3</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="3"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="4">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 4</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="3"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="5">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 5</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="3"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="6">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 6</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="2"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="7">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 7</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="2"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="8">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 8</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="1"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <div class="fila-espacios" data-nivel-conjuro="9">
+                    <button type="button" class="boton-nivel-conjuro">Nivel 9</button>
+
+                    <input
+                        type="number"
+                        class="total-espacios"
+                        min="0"
+                        max="1"
+                        value="0"
+                    >
+
+                    <div class="diamantes-conjuro"></div>
+                </div>
+
+                <button type="button" class="boton-reiniciar-conjuros" id="reiniciarConjuros">
+                    Reiniciar espacios
+                </button>
+
+                <p class="nota-conjuros">
+                    <strong>Brujo:</strong> usa la fila de nivel 1 para controlar los espacios de pacto.
+                </p>
+
+                <p class="nota-conjuros">
+                    <strong>CD conjuros:</strong> 8 + competencia + mod. aptitud mágica + bonos temporales
+                </p>
+
+                <p class="nota-conjuros">
+                    <strong>Ataque conjuros:</strong> competencia + mod. aptitud mágica + bonos temporales
+                </p>
+
+            </div>
+
+        </section>
+
     </main>
 
     <button type="button" id="inspiracionFlotante" class="inspiracion-flotante oculto">

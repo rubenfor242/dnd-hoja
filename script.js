@@ -22,6 +22,14 @@ const valorPercepcionPasiva = document.getElementById("percepcionPasiva");
 const botonInspiracion = document.getElementById("botonInspiracion");
 const inspiracionFlotante = document.getElementById("inspiracionFlotante");
 
+const aptitudMagica = document.getElementById("aptitudMagica");
+const modificadorAptitudMagica = document.getElementById("modificadorAptitudMagica");
+const cdConjuros = document.getElementById("cdConjuros");
+const bonoTempCD = document.getElementById("bonoTempCD");
+const ataqueConjuros = document.getElementById("ataqueConjuros");
+const bonoTempAtaqueConjuro = document.getElementById("bonoTempAtaqueConjuro");
+const reiniciarConjuros = document.getElementById("reiniciarConjuros");
+
 const tablaPx = [
     { nivel: 1, px: 0 },
     { nivel: 2, px: 300 },
@@ -192,6 +200,7 @@ function generarTablaPx() {
             actualizarAtributos();
             actualizarCA();
             actualizarEstado();
+            actualizarMagia();
             resaltarNivelActual();
         });
 
@@ -238,6 +247,7 @@ function actualizarDesdeNivel() {
     actualizarAtributos();
     actualizarCA();
     actualizarEstado();
+    actualizarMagia();
     resaltarNivelActual();
 }
 
@@ -251,6 +261,7 @@ function actualizarDesdePx() {
     actualizarAtributos();
     actualizarCA();
     actualizarEstado();
+    actualizarMagia();
     resaltarNivelActual();
 }
 
@@ -319,6 +330,41 @@ function actualizarEstado() {
 
     valorPercepcionPasiva.textContent =
         10 + percepcionActual;
+}
+
+function actualizarMagia() {
+    const claveAptitud = aptitudMagica.value;
+
+    let modificadorMagico = 0;
+
+    if (claveAptitud !== "ninguna") {
+        const puntuacion = limitarNumero(
+            atributos[claveAptitud].input.value,
+            3,
+            20
+        );
+
+        modificadorMagico = calcularModificador(puntuacion);
+    }
+
+    const competencia = obtenerCompetenciaActual();
+
+    const bonoCD = limitarNumero(bonoTempCD.value, -99, 99);
+    const bonoAtaque = limitarNumero(bonoTempAtaqueConjuro.value, -99, 99);
+
+    bonoTempCD.value = bonoCD;
+    bonoTempAtaqueConjuro.value = bonoAtaque;
+
+    const cdFinal = 8 + competencia + modificadorMagico + bonoCD;
+    const ataqueFinal = competencia + modificadorMagico + bonoAtaque;
+
+    modificadorAptitudMagica.textContent =
+        formatearModificador(modificadorMagico);
+
+    cdConjuros.textContent = cdFinal;
+
+    ataqueConjuros.textContent =
+        formatearModificador(ataqueFinal);
 }
 
 function actualizarPG() {
@@ -421,6 +467,74 @@ function obtenerCantidadMuerte(tipo) {
     return circulosActivos.length;
 }
 
+function limitarTotalEspacios(input) {
+    const minimo = parseInt(input.min);
+    const maximo = parseInt(input.max);
+
+    input.value = limitarNumero(input.value, minimo, maximo);
+
+    return input.value;
+}
+
+function crearDiamanteConjuro(gastado = false) {
+    const diamante = document.createElement("button");
+
+    diamante.type = "button";
+    diamante.classList.add("diamante-conjuro");
+
+    if (gastado) {
+        diamante.classList.add("gastado");
+    }
+
+    diamante.addEventListener("click", () => {
+        diamante.classList.toggle("gastado");
+    });
+
+    return diamante;
+}
+
+function actualizarDiamantesFila(fila) {
+    const inputTotal = fila.querySelector(".total-espacios");
+    const contenedorDiamantes = fila.querySelector(".diamantes-conjuro");
+
+    const total = limitarTotalEspacios(inputTotal);
+    const diamantesPrevios = Array.from(
+        contenedorDiamantes.querySelectorAll(".diamante-conjuro")
+    );
+
+    const gastadosPrevios = diamantesPrevios.filter(diamante =>
+        diamante.classList.contains("gastado")
+    ).length;
+
+    contenedorDiamantes.innerHTML = "";
+
+    for (let i = 0; i < total; i++) {
+        const diamante = crearDiamanteConjuro(i < gastadosPrevios);
+
+        contenedorDiamantes.appendChild(diamante);
+    }
+}
+
+function gastarEspacioConjuro(fila) {
+    const diamantes = Array.from(
+        fila.querySelectorAll(".diamante-conjuro")
+    );
+
+    const primerDisponible = diamantes.find(diamante =>
+        !diamante.classList.contains("gastado")
+    );
+
+    if (primerDisponible) {
+        primerDisponible.classList.add("gastado");
+    }
+}
+
+function reiniciarEspaciosConjuro() {
+    document.querySelectorAll(".diamante-conjuro").forEach(diamante => {
+        diamante.classList.remove("gastado");
+    });
+}
+
 function actualizarInspiracion() {
     if (botonInspiracion.classList.contains("activa")) {
         inspiracionFlotante.classList.remove("oculto");
@@ -442,11 +556,16 @@ inputPgActuales.addEventListener("input", actualizarPG);
 inputPgMaximos.addEventListener("input", actualizarPG);
 inputPgTemporales.addEventListener("input", actualizarPG);
 
+aptitudMagica.addEventListener("change", actualizarMagia);
+bonoTempCD.addEventListener("input", actualizarMagia);
+bonoTempAtaqueConjuro.addEventListener("input", actualizarMagia);
+
 Object.keys(atributos).forEach(claveAtributo => {
     atributos[claveAtributo].input.addEventListener("change", () => {
         actualizarAtributos();
         actualizarCA();
         actualizarEstado();
+        actualizarMagia();
     });
 });
 
@@ -462,6 +581,7 @@ document.querySelectorAll(".competencia-btn").forEach(boton => {
 
         actualizarAtributos();
         actualizarEstado();
+        actualizarMagia();
     });
 });
 
@@ -493,6 +613,27 @@ document.getElementById("reiniciarMuerte").addEventListener("click", () => {
     actualizarCirculosMuerte("fallos", 0);
 });
 
+document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => {
+    const inputTotal = fila.querySelector(".total-espacios");
+    const botonNivel = fila.querySelector(".boton-nivel-conjuro");
+
+    inputTotal.addEventListener("input", () => {
+        actualizarDiamantesFila(fila);
+    });
+
+    inputTotal.addEventListener("change", () => {
+        actualizarDiamantesFila(fila);
+    });
+
+    botonNivel.addEventListener("click", () => {
+        gastarEspacioConjuro(fila);
+    });
+
+    actualizarDiamantesFila(fila);
+});
+
+reiniciarConjuros.addEventListener("click", reiniciarEspaciosConjuro);
+
 botonInspiracion.addEventListener("click", () => {
     botonInspiracion.classList.toggle("activa");
 
@@ -510,4 +651,5 @@ actualizarAtributos();
 actualizarCA();
 actualizarPG();
 actualizarEstado();
+actualizarMagia();
 actualizarInspiracion();
