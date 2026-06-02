@@ -928,6 +928,7 @@ input[readonly] {
 @media (max-width: 650px) {
 
     .notas-combate {
+    .nota-conjuros {
         line-height: 1.05;
     }
 
