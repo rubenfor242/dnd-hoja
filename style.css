@@ -655,13 +655,7 @@ input[readonly] {
 }
 
 .separador-conjuro {
-    grid-column: 1 / -1;
-
-    height: 2px;
-
-    background: #8a8274;
-
-    margin: 2px 0 12px;
+    display: none;
 }
 
 .boton-componente {
@@ -1141,10 +1135,20 @@ input[readonly] {
         font-size: 0.52rem;
     }
 
+    .cabecera-conjuro {
+        font-size: 0.52rem;
+    }
+
     .cabecera-conjuro:nth-child(4),
     .cabecera-conjuro:nth-child(5),
     .cabecera-conjuro:nth-child(6) {
-        display: none;
+        display: block;
+    }
+
+    .conjuro-campo-alcance,
+    .conjuro-componentes,
+    .conjuro-notas {
+        grid-column: 1 / -1;
     }
 
     .conjuro-campo-alcance,
@@ -1165,6 +1169,18 @@ input[readonly] {
     .boton-componente {
         width: 22px;
         height: 22px;
+    }
+
+    .separador-conjuro {
+        display: block;
+
+        grid-column: 1 / -1;
+
+        height: 2px;
+
+        background: #8a8274;
+
+        margin: 2px 0 12px;
     }
 
     .tabla-combate {
