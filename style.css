@@ -694,6 +694,127 @@ input[readonly] {
 }
 
 /* =========================
+   EQUIPO Y MONEDAS
+========================= */
+
+.bloque-equipo-monedas {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.textarea-equipo {
+    min-height: 180px;
+
+    resize: vertical;
+
+    line-height: 1.3;
+}
+
+.sintonizacion-magica {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.sintonizacion-magica h3 {
+    margin: 0;
+
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #4d493f;
+}
+
+.linea-sintonizacion {
+    display: grid;
+
+    grid-template-columns: 36px 1fr;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+.boton-sintonizacion {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: 2px solid #686154;
+
+    color: #4d493f;
+
+    cursor: pointer;
+
+    transform: rotate(45deg);
+}
+
+.boton-sintonizacion span {
+    transform: rotate(-45deg);
+
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.boton-sintonizacion.activa {
+    background: #2b2925;
+
+    color: #f7f3ea;
+
+    box-shadow: inset 0 0 0 3px #f7f3ea;
+}
+
+.grid-monedas {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 10px;
+}
+
+.campo-moneda {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.campo-moneda label {
+    text-align: center;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.campo-moneda input {
+    text-align: center;
+}
+
+.info-monedas {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.info-monedas p {
+    margin: 0;
+
+    font-size: 0.9rem;
+    line-height: 1.1;
+}
+
+/* =========================
    COMBATE
 ========================= */
 
@@ -1181,6 +1302,41 @@ input[readonly] {
         background: #8a8274;
 
         margin: 2px 0 12px;
+    }
+
+    .textarea-equipo {
+        min-height: 140px;
+    }
+
+    .grid-monedas {
+        grid-template-columns: repeat(5, 1fr);
+
+        gap: 6px;
+    }
+
+    .campo-moneda label {
+        font-size: 0.58rem;
+    }
+
+    .campo-moneda input {
+        padding: 6px 4px;
+
+        font-size: 0.78rem;
+    }
+
+    .info-monedas p {
+        font-size: 0.72rem;
+
+        line-height: 1.05;
+    }
+
+    .linea-sintonizacion {
+        grid-template-columns: 32px 1fr;
+    }
+
+    .boton-sintonizacion {
+        width: 24px;
+        height: 24px;
     }
 
     .tabla-combate {

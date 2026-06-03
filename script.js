@@ -711,6 +711,12 @@ document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => 
 
 reiniciarConjuros.addEventListener("click", reiniciarEspaciosConjuro);
 
+document.querySelectorAll(".boton-sintonizacion").forEach(boton => {
+    boton.addEventListener("click", () => {
+        boton.classList.toggle("activa");
+    });
+});
+
 botonInspiracion.addEventListener("click", () => {
     botonInspiracion.classList.toggle("activa");
 
