@@ -697,7 +697,8 @@ input[readonly] {
    EQUIPO Y MONEDAS
 ========================= */
 
-.bloque-equipo-monedas {
+.bloque-equipo,
+.bloque-monedas {
     display: flex;
     flex-direction: column;
 
