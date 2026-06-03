@@ -816,6 +816,49 @@ input[readonly] {
 }
 
 /* =========================
+   BLOQUES TEXTO LIBRE
+========================= */
+
+.bloque-texto-libre {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.textarea-libre {
+    resize: vertical;
+
+    line-height: 1.3;
+}
+
+.textarea-aspecto {
+    min-height: 160px;
+}
+
+.textarea-historia {
+    min-height: 260px;
+}
+
+.textarea-idiomas {
+    min-height: 100px;
+}
+
+.alineamiento-contenedor {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    max-width: 180px;
+}
+
+.alineamiento-contenedor label {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* =========================
    COMBATE
 ========================= */
 
