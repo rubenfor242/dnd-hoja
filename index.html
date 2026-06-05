@@ -12,6 +12,37 @@
 
     <main class="ficha">
 
+        <section class="barra-guardado">
+
+            <div class="estado-guardado" id="estadoGuardado">
+                Cambios guardados
+            </div>
+
+            <div class="acciones-guardado">
+
+                <button type="button" id="botonExportarFicha">
+                    Exportar
+                </button>
+
+                <label class="boton-importar-ficha" for="inputImportarFicha">
+                    Importar
+                </label>
+
+                <input
+                    type="file"
+                    id="inputImportarFicha"
+                    accept=".json,application/json"
+                    class="oculto"
+                >
+
+                <button type="button" id="botonBorrarFicha">
+                    Borrar
+                </button>
+
+            </div>
+
+        </section>
+
         <header class="cabecera">
             <div>
                 <h1>Ficha de personaje</h1>

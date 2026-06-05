@@ -24,6 +24,68 @@ body {
     margin: 0 auto;
 }
 
+.barra-guardado {
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+
+    background: #f4f0e7;
+
+    border: 2px solid #686154;
+    border-radius: 6px;
+
+    padding: 10px 14px;
+    margin-bottom: 16px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+
+.estado-guardado {
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    color: #4d493f;
+}
+
+.acciones-guardado {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.acciones-guardado button,
+.boton-importar-ficha {
+    min-height: 32px;
+
+    padding: 6px 12px;
+
+    background: #f1eee6;
+
+    border: 2px solid #686154;
+    border-radius: 4px;
+
+    color: #2b2925;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.acciones-guardado button:hover,
+.boton-importar-ficha:hover {
+    background: #ebe2d2;
+}
+
 .cabecera {
     display: flex;
     justify-content: space-between;
@@ -1197,6 +1259,36 @@ input[readonly] {
 
     body {
         padding: 10px;
+    }
+
+    .barra-guardado {
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 8px;
+
+        padding: 8px 10px;
+    }
+
+    .estado-guardado {
+        text-align: center;
+
+        font-size: 0.78rem;
+    }
+
+    .acciones-guardado {
+        justify-content: center;
+
+        gap: 6px;
+    }
+
+    .acciones-guardado button,
+    .boton-importar-ficha {
+        min-height: 30px;
+
+        padding: 5px 8px;
+
+        font-size: 0.72rem;
     }
 
     .cabecera {

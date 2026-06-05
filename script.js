@@ -31,6 +31,13 @@ const bonoTempAtaqueConjuro = document.getElementById("bonoTempAtaqueConjuro");
 const reiniciarConjuros = document.getElementById("reiniciarConjuros");
 const tablaConjurosPreparados = document.getElementById("tablaConjurosPreparados");
 
+const estadoGuardado = document.getElementById("estadoGuardado");
+const botonBorrarFicha = document.getElementById("botonBorrarFicha");
+
+const CLAVE_GUARDADO_FICHA = "forjarol55-ficha-personaje-v1";
+
+let temporizadorGuardado = null;
+
 const tablaPx = [
     { nivel: 1, px: 0 },
     { nivel: 2, px: 300 },
@@ -611,6 +618,132 @@ function generarFilasConjurosPreparados() {
     }
 }
 
+function obtenerControlesGuardables() {
+    return Array.from(
+        document.querySelectorAll("input, select, textarea")
+    ).filter(control => control.type !== "file");
+}
+
+function obtenerElementosActivosGuardables() {
+    return Array.from(
+        document.querySelectorAll(
+            ".competencia-btn, #botonInspiracion, .boton-componente, .diamante-conjuro, .boton-sintonizacion"
+        )
+    );
+}
+
+function mostrarEstadoGuardado(texto) {
+    if (estadoGuardado) {
+        estadoGuardado.textContent = texto;
+    }
+}
+
+function obtenerDatosFicha() {
+    return {
+        version: 1,
+
+        controles: obtenerControlesGuardables().map(control => control.value),
+
+        activos: obtenerElementosActivosGuardables().map(elemento =>
+            elemento.classList.contains("activa") ||
+            elemento.classList.contains("gastado")
+        )
+    };
+}
+
+function recalcularFicha() {
+    document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => {
+        actualizarDiamantesFila(fila);
+    });
+
+    actualizarModoProgreso();
+    actualizarAtributos();
+    actualizarCA();
+    actualizarPG();
+    actualizarEstado();
+    actualizarMagia();
+    actualizarInspiracion();
+    resaltarNivelActual();
+}
+
+function cargarFichaLocal() {
+    const datosGuardados = localStorage.getItem(CLAVE_GUARDADO_FICHA);
+
+    if (!datosGuardados) {
+        mostrarEstadoGuardado("Cambios guardados");
+
+        return;
+    }
+
+    try {
+        const datos = JSON.parse(datosGuardados);
+
+        obtenerControlesGuardables().forEach((control, indice) => {
+            if (datos.controles[indice] !== undefined) {
+                control.value = datos.controles[indice];
+            }
+        });
+
+        document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => {
+            actualizarDiamantesFila(fila);
+        });
+
+        obtenerElementosActivosGuardables().forEach((elemento, indice) => {
+            const estaActivo = datos.activos[indice];
+
+            elemento.classList.remove("activa");
+            elemento.classList.remove("gastado");
+
+            if (estaActivo) {
+                if (elemento.classList.contains("diamante-conjuro")) {
+                    elemento.classList.add("gastado");
+                } else {
+                    elemento.classList.add("activa");
+                }
+            }
+        });
+
+        recalcularFicha();
+
+        mostrarEstadoGuardado("Ficha cargada");
+    } catch (error) {
+        mostrarEstadoGuardado("Error al cargar la ficha");
+    }
+}
+
+function guardarFichaLocal() {
+    localStorage.setItem(
+        CLAVE_GUARDADO_FICHA,
+        JSON.stringify(obtenerDatosFicha())
+    );
+
+    mostrarEstadoGuardado("Cambios guardados");
+}
+
+function programarGuardadoLocal() {
+    mostrarEstadoGuardado("Guardando...");
+
+    clearTimeout(temporizadorGuardado);
+
+    temporizadorGuardado = setTimeout(() => {
+        guardarFichaLocal();
+    }, 250);
+}
+
+function borrarFichaLocal() {
+    const confirmarBorrado = confirm(
+        "¿Seguro que quieres borrar la ficha guardada en este navegador?"
+    );
+
+    if (!confirmarBorrado) {
+        return;
+    }
+
+    localStorage.removeItem(CLAVE_GUARDADO_FICHA);
+
+    location.reload();
+}
+
 function actualizarInspiracion() {
     if (botonInspiracion.classList.contains("activa")) {
         inspiracionFlotante.classList.remove("oculto");
@@ -621,6 +754,7 @@ function actualizarInspiracion() {
 
 generarTablaPx();
 generarFilasConjurosPreparados();
+cargarFichaLocal();
 
 inputNivel.addEventListener("input", actualizarDesdeNivel);
 inputPx.addEventListener("input", actualizarDesdePx);
@@ -710,6 +844,38 @@ document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => 
 });
 
 reiniciarConjuros.addEventListener("click", reiniciarEspaciosConjuro);
+
+document.addEventListener("input", evento => {
+    if (
+        evento.target.matches("input, select, textarea") &&
+        evento.target.type !== "file"
+    ) {
+        programarGuardadoLocal();
+    }
+});
+
+document.addEventListener("change", evento => {
+    if (
+        evento.target.matches("input, select, textarea") &&
+        evento.target.type !== "file"
+    ) {
+        programarGuardadoLocal();
+    }
+});
+
+document.addEventListener("click", evento => {
+    const elementoGuardable = evento.target.closest(
+        ".competencia-btn, #botonInspiracion, .boton-componente, .diamante-conjuro, .boton-sintonizacion, .boton-muerte, .boton-reiniciar-muerte, .boton-nivel-conjuro, .boton-reiniciar-conjuros, .fila-px"
+    );
+
+    if (elementoGuardable) {
+        setTimeout(() => {
+            programarGuardadoLocal();
+        }, 0);
+    }
+});
+
+botonBorrarFicha.addEventListener("click", borrarFichaLocal);
 
 document.querySelectorAll(".boton-sintonizacion").forEach(boton => {
     boton.addEventListener("click", () => {
