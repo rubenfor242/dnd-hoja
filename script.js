@@ -32,6 +32,8 @@ const reiniciarConjuros = document.getElementById("reiniciarConjuros");
 const tablaConjurosPreparados = document.getElementById("tablaConjurosPreparados");
 
 const estadoGuardado = document.getElementById("estadoGuardado");
+const botonExportarFicha = document.getElementById("botonExportarFicha");
+const inputImportarFicha = document.getElementById("inputImportarFicha");
 const botonBorrarFicha = document.getElementById("botonBorrarFicha");
 
 const CLAVE_GUARDADO_FICHA = "forjarol55-ficha-personaje-v1";
@@ -730,6 +732,93 @@ function programarGuardadoLocal() {
     }, 250);
 }
 
+function crearNombreArchivoFicha() {
+    const nombrePersonaje = document.getElementById("nombre").value.trim();
+
+    if (nombrePersonaje) {
+        return `${nombrePersonaje.replace(/[^a-z0-9áéíóúñü -]/gi, "").replace(/\s+/g, "_")}.json`;
+    }
+
+    return "ficha-personaje.json";
+}
+
+function exportarFichaArchivo() {
+    const datosFicha = obtenerDatosFicha();
+    const contenido = JSON.stringify(datosFicha, null, 2);
+
+    const archivo = new Blob(
+        [contenido],
+        { type: "application/json" }
+    );
+
+    const enlace = document.createElement("a");
+
+    enlace.href = URL.createObjectURL(archivo);
+    enlace.download = crearNombreArchivoFicha();
+
+    enlace.click();
+
+    URL.revokeObjectURL(enlace.href);
+
+    mostrarEstadoGuardado("Ficha exportada");
+}
+
+function aplicarDatosFicha(datos) {
+    obtenerControlesGuardables().forEach((control, indice) => {
+        if (datos.controles[indice] !== undefined) {
+            control.value = datos.controles[indice];
+        }
+    });
+
+    document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => {
+        actualizarDiamantesFila(fila);
+    });
+
+    obtenerElementosActivosGuardables().forEach((elemento, indice) => {
+        const estaActivo = datos.activos[indice];
+
+        elemento.classList.remove("activa");
+        elemento.classList.remove("gastado");
+
+        if (estaActivo) {
+            if (elemento.classList.contains("diamante-conjuro")) {
+                elemento.classList.add("gastado");
+            } else {
+                elemento.classList.add("activa");
+            }
+        }
+    });
+
+    recalcularFicha();
+}
+
+function importarFichaArchivo(evento) {
+    const archivo = evento.target.files[0];
+
+    if (!archivo) {
+        return;
+    }
+
+    const lector = new FileReader();
+
+    lector.onload = eventoLectura => {
+        try {
+            const datos = JSON.parse(eventoLectura.target.result);
+
+            aplicarDatosFicha(datos);
+            guardarFichaLocal();
+
+            mostrarEstadoGuardado("Ficha importada");
+        } catch (error) {
+            mostrarEstadoGuardado("Error al importar");
+        }
+
+        inputImportarFicha.value = "";
+    };
+
+    lector.readAsText(archivo);
+}
+
 function borrarFichaLocal() {
     const confirmarBorrado = confirm(
         "¿Seguro que quieres borrar la ficha guardada en este navegador?"
@@ -875,6 +964,8 @@ document.addEventListener("click", evento => {
     }
 });
 
+botonExportarFicha.addEventListener("click", exportarFichaArchivo);
+inputImportarFicha.addEventListener("change", importarFichaArchivo);
 botonBorrarFicha.addEventListener("click", borrarFichaLocal);
 
 document.querySelectorAll(".boton-sintonizacion").forEach(boton => {
