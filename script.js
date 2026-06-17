@@ -31,6 +31,11 @@ const bonoTempAtaqueConjuro = document.getElementById("bonoTempAtaqueConjuro");
 const reiniciarConjuros = document.getElementById("reiniciarConjuros");
 const tablaConjurosPreparados = document.getElementById("tablaConjurosPreparados");
 
+const selectTrasfondo = document.getElementById("trasfondo");
+const selectEspecie = document.getElementById("especie");
+const selectClase = document.getElementById("clase");
+const selectSubclase = document.getElementById("subclase");
+
 const estadoGuardado = document.getElementById("estadoGuardado");
 const botonExportarFicha = document.getElementById("botonExportarFicha");
 const inputImportarFicha = document.getElementById("inputImportarFicha");
@@ -39,6 +44,153 @@ const botonBorrarFicha = document.getElementById("botonBorrarFicha");
 const CLAVE_GUARDADO_FICHA = "forjarol55-ficha-personaje-v1";
 
 let temporizadorGuardado = null;
+
+const trasfondosDisponibles = [
+    "Acólito",
+    "Animador",
+    "Artesano",
+    "Campesino",
+    "Charlatán",
+    "Comerciante",
+    "Criminal",
+    "Ermitaño",
+    "Erudito",
+    "Escriba",
+    "Guardia",
+    "Guía",
+    "Marinero",
+    "Noble",
+    "Soldado",
+    "Vagabundo"
+];
+
+const especiesDisponibles = [
+    "Aasimar",
+    "Dracónido azul",
+    "Dracónido blanco",
+    "Dracónido bronce",
+    "Dracónido cobre",
+    "Dracónido negro",
+    "Dracónido oro",
+    "Dracónido oropel",
+    "Dracónido plata",
+    "Dracónido rojo",
+    "Dracónido verde",
+    "Alto elfo",
+    "Drow",
+    "Elfo de los bosques",
+    "Enano",
+    "Gnomo de las rocas",
+    "Gnomo de los bosques",
+    "Goliat",
+    "Humano",
+    "Mediano",
+    "Orco",
+    "Tiefling abisal",
+    "Tiefling ctónico",
+    "Tiefling infernal"
+];
+
+const clasesDisponibles = [
+    "Bárbaro",
+    "Bardo",
+    "Brujo",
+    "Clérigo",
+    "Druida",
+    "Explorador",
+    "Guerrero",
+    "Hechicero",
+    "Mago",
+    "Monje",
+    "Paladín",
+    "Pícaro"
+];
+
+const subclasesPorClase = {
+    "Bárbaro": [
+        "Senda del Árbol del Mundo",
+        "Senda del berserker",
+        "Senda del corazón salvaje",
+        "Senda del fanático"
+    ],
+
+    "Bardo": [
+        "Colegio de la danza",
+        "Colegio del conocimiento",
+        "Colegio del glamour",
+        "Colegio del valor"
+    ],
+
+    "Brujo": [
+        "Patrón celestial",
+        "Patrón feérico",
+        "Patrón infernal",
+        "Patrón primigenio"
+    ],
+
+    "Clérigo": [
+        "Dominio de la guerra",
+        "Dominio de la luz",
+        "Dominio de la vida",
+        "Dominio del engaño"
+    ],
+
+    "Druida": [
+        "Círculo de la luna",
+        "Círculo de la tierra",
+        "Círculo de las estrellas",
+        "Círculo del mar"
+    ],
+
+    "Explorador": [
+        "Acechador en la penumbra",
+        "Cazador",
+        "Errante feérico",
+        "Señor de las bestias"
+    ],
+
+    "Guerrero": [
+        "Caballero arcano",
+        "Campeón",
+        "Guerrero psiónico",
+        "Maestro del combate"
+    ],
+
+    "Hechicero": [
+        "Hechicería aberrante",
+        "Hechicería de magia salvaje",
+        "Hechicería dracónica",
+        "Hechicería mecánica"
+    ],
+
+    "Mago": [
+        "Abjurador",
+        "Adivino",
+        "Evocador",
+        "Ilusionista"
+    ],
+
+    "Monje": [
+        "Guerrero de la mano abierta",
+        "Guerrero de la misericordia",
+        "Guerrero de la sombra",
+        "Guerrero de los elementos"
+    ],
+
+    "Paladín": [
+        "Juramento de entrega",
+        "Juramento de gloria",
+        "Juramento de los antiguos",
+        "Juramento de venganza"
+    ],
+
+    "Pícaro": [
+        "Asesino",
+        "Embaucador arcano",
+        "Ladrón",
+        "Rebanaalmas"
+    ]
+};
 
 const tablaPx = [
     { nivel: 1, px: 0 },
@@ -186,6 +338,72 @@ function obtenerNivelPorPx(px) {
     return nivelCalculado;
 }
 
+function crearOpcionSelect(valor, texto) {
+    const opcion = document.createElement("option");
+
+    opcion.value = valor;
+    opcion.textContent = texto;
+
+    return opcion;
+}
+
+function rellenarSelect(select, opciones, textoInicial) {
+    select.innerHTML = "";
+
+    select.appendChild(crearOpcionSelect("", textoInicial));
+
+    opciones.forEach(opcion => {
+        select.appendChild(crearOpcionSelect(opcion, opcion));
+    });
+}
+
+function actualizarOpcionesSubclase(valorSeleccionado = "") {
+    const claseSeleccionada = selectClase.value;
+    const subclasesDisponibles = subclasesPorClase[claseSeleccionada] || [];
+    const nivelActual = limitarNumero(inputNivel.value, 1, 20);
+
+    selectSubclase.innerHTML = "";
+
+    if (nivelActual < 3) {
+        selectSubclase.disabled = true;
+
+        selectSubclase.appendChild(
+            crearOpcionSelect("", "Disponible a nivel 3")
+        );
+
+        return;
+    }
+
+    selectSubclase.disabled = false;
+
+    if (!claseSeleccionada) {
+        selectSubclase.appendChild(
+            crearOpcionSelect("", "-- Seleccionar clase primero --")
+        );
+
+        return;
+    }
+
+    selectSubclase.appendChild(
+        crearOpcionSelect("", "-- Seleccionar --")
+    );
+
+    subclasesDisponibles.forEach(subclase => {
+        selectSubclase.appendChild(crearOpcionSelect(subclase, subclase));
+    });
+
+    if (subclasesDisponibles.includes(valorSeleccionado)) {
+        selectSubclase.value = valorSeleccionado;
+    }
+}
+
+function generarOpcionesIdentidad() {
+    rellenarSelect(selectTrasfondo, trasfondosDisponibles, "-- Seleccionar --");
+    rellenarSelect(selectEspecie, especiesDisponibles, "-- Seleccionar --");
+    rellenarSelect(selectClase, clasesDisponibles, "-- Seleccionar --");
+    actualizarOpcionesSubclase();
+}
+
 function generarTablaPx() {
     tablaPxElemento.innerHTML = "";
 
@@ -211,6 +429,7 @@ function generarTablaPx() {
             actualizarCA();
             actualizarEstado();
             actualizarMagia();
+            actualizarOpcionesSubclase(selectSubclase.value);
             resaltarNivelActual();
         });
 
@@ -258,6 +477,7 @@ function actualizarDesdeNivel() {
     actualizarCA();
     actualizarEstado();
     actualizarMagia();
+    actualizarOpcionesSubclase(selectSubclase.value);
     resaltarNivelActual();
 }
 
@@ -272,6 +492,7 @@ function actualizarDesdePx() {
     actualizarCA();
     actualizarEstado();
     actualizarMagia();
+    actualizarOpcionesSubclase(selectSubclase.value);
     resaltarNivelActual();
 }
 
@@ -654,6 +875,10 @@ function obtenerDatosFicha() {
 }
 
 function recalcularFicha() {
+    const subclaseActual = selectSubclase.value;
+
+    actualizarOpcionesSubclase(subclaseActual);
+
     document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => {
         actualizarDiamantesFila(fila);
     });
@@ -680,11 +905,19 @@ function cargarFichaLocal() {
     try {
         const datos = JSON.parse(datosGuardados);
 
-        obtenerControlesGuardables().forEach((control, indice) => {
-            if (datos.controles[indice] !== undefined) {
+        const controles = obtenerControlesGuardables();
+        const indiceSubclase = controles.findIndex(control => control.id === "subclase");
+
+        controles.forEach((control, indice) => {
+            if (
+                datos.controles[indice] !== undefined &&
+                control.id !== "subclase"
+            ) {
                 control.value = datos.controles[indice];
             }
         });
+
+        actualizarOpcionesSubclase(datos.controles[indiceSubclase]);
 
         document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => {
             actualizarDiamantesFila(fila);
@@ -764,11 +997,19 @@ function exportarFichaArchivo() {
 }
 
 function aplicarDatosFicha(datos) {
-    obtenerControlesGuardables().forEach((control, indice) => {
-        if (datos.controles[indice] !== undefined) {
+    const controles = obtenerControlesGuardables();
+    const indiceSubclase = controles.findIndex(control => control.id === "subclase");
+
+    controles.forEach((control, indice) => {
+        if (
+            datos.controles[indice] !== undefined &&
+            control.id !== "subclase"
+        ) {
             control.value = datos.controles[indice];
         }
     });
+
+    actualizarOpcionesSubclase(datos.controles[indiceSubclase]);
 
     document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => {
         actualizarDiamantesFila(fila);
@@ -841,6 +1082,7 @@ function actualizarInspiracion() {
     }
 }
 
+generarOpcionesIdentidad();
 generarTablaPx();
 generarFilasConjurosPreparados();
 cargarFichaLocal();
@@ -848,6 +1090,10 @@ cargarFichaLocal();
 inputNivel.addEventListener("input", actualizarDesdeNivel);
 inputPx.addEventListener("input", actualizarDesdePx);
 modoProgreso.addEventListener("change", actualizarModoProgreso);
+
+selectClase.addEventListener("change", () => {
+    actualizarOpcionesSubclase();
+});
 
 inputCaBase.addEventListener("input", actualizarCA);
 tipoArmadura.addEventListener("change", actualizarCA);
