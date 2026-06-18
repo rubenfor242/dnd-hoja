@@ -17,6 +17,9 @@ const inputPgActuales = document.getElementById("pgActuales");
 const inputPgMaximos = document.getElementById("pgMaximos");
 const inputPgTemporales = document.getElementById("pgTemporales");
 
+const inputDadosGolpeGastados = document.getElementById("dadosGolpeGastados");
+const inputDadosGolpeMaximos = document.getElementById("dadosGolpeMaximos");
+
 const valorIniciativa = document.getElementById("iniciativa");
 const valorPercepcionPasiva = document.getElementById("percepcionPasiva");
 const botonInspiracion = document.getElementById("botonInspiracion");
@@ -105,6 +108,21 @@ const clasesDisponibles = [
     "Paladín",
     "Pícaro"
 ];
+
+const dadosGolpePorClase = {
+    "Bárbaro": "d12",
+    "Bardo": "d8",
+    "Brujo": "d8",
+    "Clérigo": "d8",
+    "Druida": "d8",
+    "Explorador": "d10",
+    "Guerrero": "d10",
+    "Hechicero": "d6",
+    "Mago": "d6",
+    "Monje": "d8",
+    "Paladín": "d10",
+    "Pícaro": "d8"
+};
 
 const subclasesPorClase = {
     "Bárbaro": [
@@ -430,6 +448,7 @@ function generarTablaPx() {
             actualizarEstado();
             actualizarMagia();
             actualizarOpcionesSubclase(selectSubclase.value);
+            actualizarDadosGolpe();
             resaltarNivelActual();
         });
 
@@ -478,6 +497,7 @@ function actualizarDesdeNivel() {
     actualizarEstado();
     actualizarMagia();
     actualizarOpcionesSubclase(selectSubclase.value);
+    actualizarDadosGolpe();
     resaltarNivelActual();
 }
 
@@ -493,6 +513,7 @@ function actualizarDesdePx() {
     actualizarEstado();
     actualizarMagia();
     actualizarOpcionesSubclase(selectSubclase.value);
+    actualizarDadosGolpe();
     resaltarNivelActual();
 }
 
@@ -617,6 +638,26 @@ function actualizarPG() {
     } else {
         inputPgActuales.readOnly = false;
     }
+}
+
+function actualizarDadosGolpe() {
+    const nivelActual = limitarNumero(inputNivel.value, 1, 20);
+    const dadoGolpe = dadosGolpePorClase[selectClase.value];
+
+    inputDadosGolpeGastados.max = nivelActual;
+    inputDadosGolpeGastados.value = limitarNumero(
+        inputDadosGolpeGastados.value,
+        0,
+        nivelActual
+    );
+
+    if (!dadoGolpe) {
+        inputDadosGolpeMaximos.value = `${nivelActual}d?`;
+
+        return;
+    }
+
+    inputDadosGolpeMaximos.value = `${nivelActual}${dadoGolpe}`;
 }
 
 function actualizarModoProgreso() {
@@ -887,6 +928,7 @@ function recalcularFicha() {
     actualizarAtributos();
     actualizarCA();
     actualizarPG();
+    actualizarDadosGolpe();
     actualizarEstado();
     actualizarMagia();
     actualizarInspiracion();
@@ -1093,6 +1135,7 @@ modoProgreso.addEventListener("change", actualizarModoProgreso);
 
 selectClase.addEventListener("change", () => {
     actualizarOpcionesSubclase();
+    actualizarDadosGolpe();
 });
 
 inputCaBase.addEventListener("input", actualizarCA);
@@ -1101,6 +1144,8 @@ tipoArmadura.addEventListener("change", actualizarCA);
 inputPgActuales.addEventListener("input", actualizarPG);
 inputPgMaximos.addEventListener("input", actualizarPG);
 inputPgTemporales.addEventListener("input", actualizarPG);
+
+inputDadosGolpeGastados.addEventListener("input", actualizarDadosGolpe);
 
 aptitudMagica.addEventListener("change", actualizarMagia);
 bonoTempCD.addEventListener("input", actualizarMagia);
@@ -1236,6 +1281,7 @@ actualizarModoProgreso();
 actualizarAtributos();
 actualizarCA();
 actualizarPG();
+actualizarDadosGolpe();
 actualizarEstado();
 actualizarMagia();
 actualizarInspiracion();

@@ -14,31 +14,41 @@
 
         <section class="barra-guardado">
 
-            <div class="estado-guardado" id="estadoGuardado">
-                Cambios guardados
+            <div class="barra-guardado-ficha">
+
+                <div class="estado-guardado" id="estadoGuardado">
+                    Cambios guardados
+                </div>
+
+                <div class="acciones-guardado">
+
+                    <button type="button" id="botonExportarFicha">
+                        Exportar
+                    </button>
+
+                    <label class="boton-importar-ficha" for="inputImportarFicha">
+                        Importar
+                    </label>
+
+                    <input
+                        type="file"
+                        id="inputImportarFicha"
+                        accept=".json,application/json"
+                        class="oculto"
+                    >
+
+                    <button type="button" id="botonBorrarFicha">
+                        Nuevo PJ
+                    </button>
+
+                </div>
+
             </div>
 
-            <div class="acciones-guardado">
-
-                <button type="button" id="botonExportarFicha">
-                    Exportar
-                </button>
-
-                <label class="boton-importar-ficha" for="inputImportarFicha">
-                    Importar
-                </label>
-
-                <input
-                    type="file"
-                    id="inputImportarFicha"
-                    accept=".json,application/json"
-                    class="oculto"
-                >
-
-                <button type="button" id="botonBorrarFicha">
-                    Borrar
-                </button>
-
+            <div class="barra-guardado-catalogos">
+                <a href="catalogos/catalogos.html" class="boton-importar-ficha">
+                    Catálogos
+                </a>
             </div>
 
         </section>
@@ -251,7 +261,7 @@
                         type="number"
                         id="dadosGolpeGastados"
                         min="0"
-                        max="99"
+                        max="20"
                         value="0"
                     >
                 </div>
@@ -260,11 +270,10 @@
                     <label for="dadosGolpeMaximos">DG máximos</label>
 
                     <input
-                        type="number"
+                        type="text"
                         id="dadosGolpeMaximos"
-                        min="0"
-                        max="99"
-                        value="0"
+                        value="1d?"
+                        readonly
                     >
                 </div>
 
