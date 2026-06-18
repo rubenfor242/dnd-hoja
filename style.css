@@ -1308,6 +1308,14 @@ input[readonly] {
         gap: 6px;
     }
 
+    .panel .acciones-guardado {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 8px;
+    }
+
     .acciones-guardado button,
     .boton-importar-ficha {
         min-height: 30px;
