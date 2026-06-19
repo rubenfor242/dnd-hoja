@@ -41,25 +41,36 @@ const catalogoEspecies = [
                 descripcion: "A nivel 3 puedes transformarte brevemente y elegir una manifestación celestial. La transformación dura 1 minuto. Después necesitas finalizar un descanso largo para volver a usar este atributo."
             }
         ],
-        variantes: {
+        variantesTexto: {
             titulo: "Opciones de revelación celestial",
-            columnas: [
-                "Opción",
-                "Efecto"
-            ],
-            filas: [
-                [
-                    "Alas celestiales",
-                    "Obtienes velocidad de vuelo igual a tu velocidad."
-                ],
-                [
-                    "Fulgor interior",
-                    "Emites luz brillante en un radio de 3 m y luz tenue 3 m más allá, y al final de cada uno de tus turnos, cada criatura a 3 m adicional recibe daño radiante igual a tu bonificador de competencia."
-                ],
-                [
-                    "Mortaja necrótica",
-                    "Las criaturas no aliadas a 3 m o menos de tí deben superar una tirada de salvación de Carisma, con CD 8 más tu modificador de Carisma y tu bonificador por competencia, o tendrán el estado de asustado hasta el final de tu siguinete turno."
-                ]
+            elementos: [
+                {
+                    nombre: "Alas celestiales",
+                    detalles: [
+                        {
+                            titulo: "Efecto",
+                            texto: "Obtienes velocidad de vuelo igual a tu velocidad."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Fulgor interior",
+                    detalles: [
+                        {
+                            titulo: "Efecto",
+                            texto: "Emites luz brillante en un radio de 3 m y luz tenue 3 m más allá, y al final de cada uno de tus turnos, cada criatura a 3 m adicional recibe daño radiante igual a tu bonificador de competencia."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Mortaja necrótica",
+                    detalles: [
+                        {
+                            titulo: "Efecto",
+                            texto: "Las criaturas no aliadas a 3 m o menos de ti deben superar una tirada de salvación de Carisma, con CD 8 más tu modificador de Carisma y tu bonificador por competencia, o tendrán el estado asustado hasta el final de tu siguiente turno."
+                        }
+                    ]
+                }
             ]
         }
     },
@@ -171,33 +182,60 @@ const catalogoEspecies = [
                 descripcion: "Tienes visión en la oscuridad hasta 18 m."
             }
         ],
-        variantes: {
+        variantesTexto: {
             titulo: "Linajes élficos",
-            columnas: [
-                "Linaje",
-                "Nivel 1",
-                "Nivel 3",
-                "Nivel 5"
-            ],
-            filas: [
-                [
-                    "Alto elfo",
-                    "Conoces el truco prestidigitación. Tras finalizar un descanso largo, puedes sustituir ese truco por otro truco de la lista de conjuros de mago.",
-                    "Detectar magia",
-                    "Paso brumoso"
-                ],
-                [
-                    "Drow",
-                    "Tu alcance de visión en la oscuridad aumenta a 36 m. También conoces el truco luces danzantes.",
-                    "Fuego feérico",
-                    "Oscuridad"
-                ],
-                [
-                    "Elfo de los bosques",
-                    "Tu velocidad aumenta a 10,5 m. También conoces el truco saber druídico.",
-                    "Zancada prodigiosa",
-                    "Pasar sin rastro"
-                ]
+            elementos: [
+                {
+                    nombre: "Alto elfo",
+                    detalles: [
+                        {
+                            titulo: "Nivel 1",
+                            texto: "Conoces el truco prestidigitación. Tras finalizar un descanso largo, puedes sustituir ese truco por otro truco de la lista de conjuros de mago."
+                        },
+                        {
+                            titulo: "Nivel 3",
+                            texto: "Detectar magia."
+                        },
+                        {
+                            titulo: "Nivel 5",
+                            texto: "Paso brumoso."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Drow",
+                    detalles: [
+                        {
+                            titulo: "Nivel 1",
+                            texto: "Tu alcance de visión en la oscuridad aumenta a 36 m. También conoces el truco luces danzantes."
+                        },
+                        {
+                            titulo: "Nivel 3",
+                            texto: "Fuego feérico."
+                        },
+                        {
+                            titulo: "Nivel 5",
+                            texto: "Oscuridad."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Elfo de los bosques",
+                    detalles: [
+                        {
+                            titulo: "Nivel 1",
+                            texto: "Tu velocidad aumenta a 10,5 m. También conoces el truco saber druídico."
+                        },
+                        {
+                            titulo: "Nivel 3",
+                            texto: "Zancada prodigiosa."
+                        },
+                        {
+                            titulo: "Nivel 5",
+                            texto: "Pasar sin rastro."
+                        }
+                    ]
+                }
             ]
         }
     },
@@ -248,21 +286,27 @@ const catalogoEspecies = [
                 descripcion: "Tienes visión en la oscuridad hasta 18 m."
             }
         ],
-        variantes: {
+        variantesTexto: {
             titulo: "Linajes gnomos",
-            columnas: [
-                "Linaje",
-                "Beneficio"
-            ],
-            filas: [
-                [
-                    "Gnomo de las rocas",
-                    "Conoces los trucos prestidigitación y reparar. Además, puedes pasar 10 minutos lanzando prestidigitación para crear un dispositivo mecánico Diminuto. Cuando lo creas, eliges una función: juguete, encendedor o caja de música. Puedes tener tres dispositivos activos a la vez; cada uno se desarma 8 horas después de crearlo o cuando lo desmantelas con una acción."
-                ],
-                [
-                    "Gnomo de los bosques",
-                    "Conoces el truco ilusión menor. Además, siempre tienes el conjuro hablar con los animales preparado. Puedes lanzarlo sin gastar espacio de conjuro una vez por descanso largo, y también usando cualquier espacio de conjuro que tengas."
-                ]
+            elementos: [
+                {
+                    nombre: "Gnomo de las rocas",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Conoces los trucos prestidigitación y reparar. Además, puedes pasar 10 minutos lanzando prestidigitación para crear un dispositivo mecánico Diminuto. Cuando lo creas, eliges una función: juguete, encendedor o caja de música. Puedes tener tres dispositivos activos a la vez; cada uno se desarma 8 horas después de crearlo o cuando lo desmantelas con una acción."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Gnomo de los bosques",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Conoces el truco ilusión menor. Además, siempre tienes el conjuro hablar con los animales preparado. Puedes lanzarlo sin gastar espacio de conjuro una vez por descanso largo, y también usando cualquier espacio de conjuro que tengas."
+                        }
+                    ]
+                }
             ]
         }
     },
@@ -287,37 +331,63 @@ const catalogoEspecies = [
                 descripcion: "Elige un linaje gigante. Puedes usar el beneficio elegido una cantidad de veces igual a tu bonificador por competencia y recuperas todos los usos al finalizar un descanso largo."
             }
         ],
-        variantes: {
+        variantesTexto: {
             titulo: "Linajes gigantes",
-            columnas: [
-                "Linaje",
-                "Beneficio"
-            ],
-            filas: [
-                [
-                    "Gigante de fuego",
-                    "Cuando aciertes a un objetivo con una tirada de ataque y le causes daño, también puedes causarle 1d10 de daño de fuego."
-                ],
-                [
-                    "Gigante de las colinas",
-                    "Cuando aciertes a una criatura Grande o más pequeña con una tirada de ataque y le causes daño, también puedes infligirle el estado derribado."
-                ],
-                [
-                    "Gigante de las nubes",
-                    "Como acción adicional, te teletransportas mágicamente hasta 9 m a un espacio sin ocupar que puedas ver."
-                ],
-                [
-                    "Gigante de escarcha",
-                    "Cuando aciertes a un objetivo con una tirada de ataque y le causes daño, también puedes causarle 1d6 de daño de frío y reducir su velocidad en 3 m hasta el principio de tu siguiente turno."
-                ],
-                [
-                    "Gigante de piedra",
-                    "Cuando recibas daño, puedes usar una reacción para tirar 1d12. Suma tu modificador de Constitución al resultado y reduce el daño en ese total."
-                ],
-                [
-                    "Gigante de las tormentas",
-                    "Cuando una criatura que esté a 18 m o menos de ti te cause daño, puedes usar una reacción para infligirle 1d8 de daño de trueno."
-                ]
+            elementos: [
+                {
+                    nombre: "Gigante de fuego",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Cuando aciertes a un objetivo con una tirada de ataque y le causes daño, también puedes causarle 1d10 de daño de fuego."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Gigante de las colinas",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Cuando aciertes a una criatura Grande o más pequeña con una tirada de ataque y le causes daño, también puedes infligirle el estado derribado."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Gigante de las nubes",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Como acción adicional, te teletransportas mágicamente hasta 9 m a un espacio sin ocupar que puedas ver."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Gigante de escarcha",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Cuando aciertes a un objetivo con una tirada de ataque y le causes daño, también puedes causarle 1d6 de daño de frío y reducir su velocidad en 3 m hasta el principio de tu siguiente turno."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Gigante de piedra",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Cuando recibas daño, puedes usar una reacción para tirar 1d12. Suma tu modificador de Constitución al resultado y reduce el daño en ese total."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Gigante de las tormentas",
+                    detalles: [
+                        {
+                            titulo: "Beneficio",
+                            texto: "Cuando una criatura que esté a 18 m o menos de ti te cause daño, puedes usar una reacción para infligirle 1d8 de daño de trueno."
+                        }
+                    ]
+                }
             ]
         }
     },
@@ -412,33 +482,60 @@ const catalogoEspecies = [
                 descripcion: "Tienes visión en la oscuridad hasta 18 m."
             }
         ],
-        variantes: {
+        variantesTexto: {
             titulo: "Legados infernales",
-            columnas: [
-                "Legado",
-                "Nivel 1",
-                "Nivel 3",
-                "Nivel 5"
-            ],
-            filas: [
-                [
-                    "Abisal",
-                    "Tienes resistencia al daño de veneno. También conoces el truco rociada venenosa.",
-                    "Rayo nauseabundo",
-                    "Inmovilizar persona"
-                ],
-                [
-                    "Ctónico",
-                    "Tienes resistencia al daño necrótico. También conoces el truco toque helado.",
-                    "Falsa vida",
-                    "Rayo debilitador"
-                ],
-                [
-                    "Infernal",
-                    "Tienes resistencia al daño de fuego. También conoces el truco descarga de fuego.",
-                    "Represión infernal",
-                    "Oscuridad"
-                ]
+            elementos: [
+                {
+                    nombre: "Abisal",
+                    detalles: [
+                        {
+                            titulo: "Nivel 1",
+                            texto: "Tienes resistencia al daño de veneno. También conoces el truco rociada venenosa."
+                        },
+                        {
+                            titulo: "Nivel 3",
+                            texto: "Rayo nauseabundo."
+                        },
+                        {
+                            titulo: "Nivel 5",
+                            texto: "Inmovilizar persona."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Ctónico",
+                    detalles: [
+                        {
+                            titulo: "Nivel 1",
+                            texto: "Tienes resistencia al daño necrótico. También conoces el truco toque helado."
+                        },
+                        {
+                            titulo: "Nivel 3",
+                            texto: "Falsa vida."
+                        },
+                        {
+                            titulo: "Nivel 5",
+                            texto: "Rayo debilitador."
+                        }
+                    ]
+                },
+                {
+                    nombre: "Infernal",
+                    detalles: [
+                        {
+                            titulo: "Nivel 1",
+                            texto: "Tienes resistencia al daño de fuego. También conoces el truco descarga de fuego."
+                        },
+                        {
+                            titulo: "Nivel 3",
+                            texto: "Represión infernal."
+                        },
+                        {
+                            titulo: "Nivel 5",
+                            texto: "Oscuridad."
+                        }
+                    ]
+                }
             ]
         }
     }

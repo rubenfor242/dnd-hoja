@@ -81,6 +81,20 @@ function crearTextoBuscableEspecie(especie) {
         ].join(" ")
         : "";
 
+    const textosVariantesTexto = especie.variantesTexto
+        ? [
+            especie.variantesTexto.titulo,
+            especie.variantesTexto.elementos
+                .map(elemento => [
+                    elemento.nombre,
+                    elemento.detalles
+                        .map(detalle => `${detalle.titulo} ${detalle.texto}`)
+                        .join(" ")
+                ].join(" "))
+                .join(" ")
+        ].join(" ")
+        : "";
+
     return normalizarTexto([
         especie.nombre,
         especie.resumen,
@@ -88,7 +102,8 @@ function crearTextoBuscableEspecie(especie) {
         especie.tamano,
         especie.velocidad,
         textosAtributos,
-        textosVariantes
+        textosVariantes,
+        textosVariantesTexto
     ].join(" "));
 }
 
@@ -129,6 +144,26 @@ function crearVariantesHTML(variantes) {
                 `).join("")}
             </tbody>
         </table>
+    `;
+}
+
+function crearVariantesTextoHTML(variantesTexto) {
+    if (!variantesTexto) {
+        return "";
+    }
+
+    return `
+        <h2>${variantesTexto.titulo}</h2>
+
+        ${variantesTexto.elementos.map(elemento => `
+            <div class="bloque-variante-catalogo">
+                <h3>${elemento.nombre}</h3>
+
+                ${elemento.detalles.map(detalle => `
+                    <p><strong>${detalle.titulo}:</strong> ${detalle.texto}</p>
+                `).join("")}
+            </div>
+        `).join("")}
     `;
 }
 
@@ -195,6 +230,8 @@ function crearTarjetaEspecie(especie, abrirAutomaticamente = false) {
                 ${crearAtributosEspecialesHTML(especie.atributosEspeciales)}
 
                 ${crearVariantesHTML(especie.variantes)}
+
+                ${crearVariantesTextoHTML(especie.variantesTexto)}
 
             </div>
 
