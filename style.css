@@ -1235,6 +1235,37 @@ input[readonly] {
     display: none;
 }
 
+.tabla-catalogo {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 10px;
+    margin-bottom: 14px;
+
+    border: 2px solid #686154;
+}
+
+.tabla-catalogo th,
+.tabla-catalogo td {
+    padding: 8px 10px;
+
+    border-bottom: 1px solid rgba(104, 97, 84, 0.55);
+
+    text-align: left;
+    vertical-align: top;
+}
+
+.tabla-catalogo th {
+    background: rgba(104, 97, 84, 0.12);
+
+    font-weight: bold;
+}
+
+.tabla-catalogo tr:last-child td {
+    border-bottom: none;
+}
+
 .separador-arma {
     display: none;
 }

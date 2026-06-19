@@ -1,3 +1,19 @@
+const introduccionTrasfondos = {
+    titulo: "¿Qué es un trasfondo?",
+    parrafos: [
+        "El trasfondo representa el lugar, ocupación y experiencias más importantes que tuvo tu personaje antes de convertirse en aventurero."
+    ],
+    subtitulo: "¿Qué aporta un trasfondo?",
+    elementos: [
+        "Aumentos de característica.",
+        "Una dote de origen.",
+        "Competencia en dos habilidades.",
+        "Competencia en una herramienta.",
+        "Equipo inicial, eligiendo entre el paquete indicado (A) o 50 po (B)."
+    ],
+    nota: "El equipo del trasfondo se suma al equipo inicial proporcionado por la clase."
+};
+
 const reglaAumentosTrasfondo = {
     titulo: "Aumentos de característica",
     texto: "Cada trasfondo indica tres características. Al crear el personaje, puedes aumentar el valor de una de ellas en 2 y otra en 1, o aumentar las tres en 1. Ninguna puntuación puede superar 20 con estos aumentos."

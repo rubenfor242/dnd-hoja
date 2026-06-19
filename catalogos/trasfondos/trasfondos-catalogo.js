@@ -1,6 +1,7 @@
 const CLAVE_FAVORITOS = "forjarol55-favoritos-v1";
 
 const buscadorTrasfondos = document.getElementById("buscadorTrasfondos");
+const introduccionTrasfondosElemento = document.getElementById("introduccionTrasfondos");
 const reglaAumentosTrasfondoElemento = document.getElementById("reglaAumentosTrasfondo");
 const listaTrasfondos = document.getElementById("listaTrasfondos");
 
@@ -129,6 +130,22 @@ function crearTarjetaTrasfondo(trasfondo, abrirAutomaticamente = false) {
     `;
 }
 
+function mostrarIntroduccionTrasfondos() {
+    introduccionTrasfondosElemento.innerHTML = `
+        <h2>${introduccionTrasfondos.titulo}</h2>
+
+        ${introduccionTrasfondos.parrafos.map(parrafo => `<p>${parrafo}</p>`).join("")}
+
+        <h2>${introduccionTrasfondos.subtitulo}</h2>
+
+        <ul>
+            ${introduccionTrasfondos.elementos.map(elemento => `<li>${elemento}</li>`).join("")}
+        </ul>
+
+        <p>${introduccionTrasfondos.nota}</p>
+    `;
+}
+
 function mostrarReglaAumentos() {
     reglaAumentosTrasfondoElemento.innerHTML = `
         <h2>${reglaAumentosTrasfondo.titulo}</h2>
@@ -174,6 +191,7 @@ function mostrarTrasfondos() {
     });
 }
 
+mostrarIntroduccionTrasfondos();
 mostrarReglaAumentos();
 mostrarTrasfondos();
 
