@@ -1286,6 +1286,36 @@ input[readonly] {
     border-bottom: none;
 }
 
+.tabla-progresion-clase {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    border: 2px solid #686154;
+}
+
+.tabla-progresion-clase th,
+.tabla-progresion-clase td {
+    padding: 8px 10px;
+
+    border-bottom: 1px solid rgba(104, 97, 84, 0.55);
+
+    text-align: center;
+}
+
+.tabla-progresion-clase th {
+    background: rgba(104, 97, 84, 0.12);
+
+    font-weight: bold;
+}
+
+.tabla-progresion-clase tr:last-child td {
+    border-bottom: none;
+}
+
 .separador-arma {
     display: none;
 }
@@ -1624,5 +1654,13 @@ input[readonly] {
     .atributo-puntuacion {
         width: 100%;
     }
+
+    .tabla-progresion-clase th,
+    .tabla-progresion-clase td {
+        padding: 4px 6px;
+
+        font-size: 0.65rem;
+    }
+
 }
 ```
