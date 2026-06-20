@@ -170,9 +170,9 @@ const catalogoClases = [
             columnas: [
                 "Nivel",
                 "Comp.",
-                "Nº furias",
+                "Usos furia",
                 "Daño furia",
-                "Maestrías"
+                "Maestría"
             ],
             filas: [
                 ["1", "+2", "2", "+2", "2"],
