@@ -182,6 +182,32 @@ function crearProgresionHTML(progresion) {
     `;
 }
 
+function crearEspaciosConjuroHTML(espaciosConjuro) {
+    if (!espaciosConjuro) {
+        return "";
+    }
+
+    return `
+        <h2>${espaciosConjuro.titulo}</h2>
+
+        <table class="tabla-catalogo tabla-progresion-clase">
+            <thead>
+                <tr>
+                    ${espaciosConjuro.columnas.map(columna => `<th>${columna}</th>`).join("")}
+                </tr>
+            </thead>
+
+            <tbody>
+                ${espaciosConjuro.filas.map(fila => `
+                    <tr>
+                        ${fila.map(celda => `<td>${celda}</td>`).join("")}
+                    </tr>
+                `).join("")}
+            </tbody>
+        </table>
+    `;
+}
+
 function crearSubclasesHTML(subclases) {
     if (!subclases || subclases.length === 0) {
         return "";
@@ -273,6 +299,8 @@ function crearTarjetaClase(clase, abrirAutomaticamente = false) {
                 </div>
 
                 ${crearProgresionHTML(clase.progresion)}
+
+                ${crearEspaciosConjuroHTML(clase.espaciosConjuro)}
 
                 ${crearRasgosHTML("Rasgos de clase", clase.rasgosClase)}
 
