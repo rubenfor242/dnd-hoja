@@ -1235,6 +1235,25 @@ input[readonly] {
     display: none;
 }
 
+.bloque-datos-clase {
+    margin: 16px 0 20px;
+
+    padding: 14px 16px;
+
+    border: 2px solid #686154;
+    border-radius: 4px;
+
+    background: rgba(104, 97, 84, 0.04);
+}
+
+.bloque-datos-clase p {
+    margin: 0 0 10px 0;
+}
+
+.bloque-datos-clase p:last-child {
+    margin-bottom: 0;
+}
+
 .tabla-catalogo {
     width: 100%;
     max-width: 250px;
