@@ -540,6 +540,15 @@ const dotes = [
         ]
     },
     {
+        nombre: "Lucha a ciegas",
+        categoria: "Estilo de combate",
+        requisito: "Rasgo Estilo de combate",
+        resumen: "Te permite percibir criaturas cercanas aunque no puedas verlas normalmente.",
+        beneficios: [
+            "Obtienes visión ciega con un alcance de 3 m."
+        ]
+    },
+    {
         nombre: "Líder inspirador",
         categoria: "General",
         requisito: "Nivel 4 o más, Carisma 13 o más",
