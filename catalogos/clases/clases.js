@@ -472,7 +472,145 @@ const catalogoClases = [
                 ["20", "4", "3", "3", "3", "3", "2", "2", "1", "1"]
             ]
         },
-        rasgosClase: [],
-        subclases: []
+        rasgosClase: [
+            {
+                nombre: "Nivel 1: Inspiración bárdica",
+                descripcion: "Puedes inspirar sobrenaturalmente a otra criatura que esté a 18 m o menos de ti y pueda verte u oírte. Como acción adicional, le otorgas un dado de Inspiración bárdica. Durante la siguiente hora, la criatura puede tirar ese dado y sumarlo a una prueba, ataque o tirada de salvación después de tirar el d20, pero antes de saber si tiene éxito. El tamaño del dado y el número de usos aumentan con el nivel según la tabla de progresión de la clase. Recuperas todos los usos al finalizar un descanso largo."
+            },
+            {
+                nombre: "Nivel 1: Lanzamiento de conjuros",
+                descripcion: "Puedes lanzar conjuros de la lista de conjuros de bardo usando Carisma como aptitud mágica. El número de trucos, conjuros preparados y espacios de conjuro aumenta con el nivel según las tablas de progresión. Puedes usar un instrumento musical como canalizador mágico para tus conjuros de bardo."
+            },
+            {
+                nombre: "Nivel 2: Aprendiz de mucho",
+                descripcion: "Puedes sumar la mitad de tu bonificador por competencia, redondeando hacia abajo, a cualquier prueba de característica que uses con una habilidad en la que no tengas competencia y que no se beneficie ya de tu bonificador por competencia."
+            },
+            {
+                nombre: "Nivel 2: Pericia",
+                descripcion: "Ganas pericia en dos habilidades en las que tengas competencia. En nivel 9 obtienes pericia en otras dos habilidades."
+            },
+            {
+                nombre: "Nivel 3: Subclase de bardo",
+                descripcion: "Eliges una subclase de bardo. Recibes sus rasgos en los niveles indicados por la clase."
+            },
+            {
+                nombre: "Nivel 4: Mejora de característica",
+                descripcion: "Obtienes una dote de Mejora de característica u otra dote para la que cumplas los requisitos. Vuelves a obtener este rasgo en los niveles 8, 12 y 16."
+            },
+            {
+                nombre: "Nivel 5: Fuente de inspiración",
+                descripcion: "Recuperas todos los usos de Inspiración bárdica al finalizar un descanso corto o largo. Además, puedes gastar un espacio de conjuro sin usar acción para recuperar un uso gastado de Inspiración bárdica."
+            },
+            {
+                nombre: "Nivel 7: Contraencantamiento",
+                descripcion: "Puedes usar música o palabras de poder para proteger contra efectos mentales. Si tú o una criatura a 9 m o menos falláis una salvación contra un efecto que aplique el estado asustado o hechizado, puedes usar una reacción para repetir la tirada con ventaja, usando el nuevo resultado."
+            },
+            {
+                nombre: "Nivel 10: Secretos mágicos",
+                descripcion: "Cuando tu cantidad de conjuros preparados aumente, puedes elegir conjuros de las listas de bardo, clérigo, druida y mago. Los conjuros elegidos cuentan como conjuros de bardo para ti. Además, cuando sustituyas un conjuro preparado de bardo, puedes sustituirlo por un conjuro de cualquiera de esas listas."
+            },
+            {
+                nombre: "Nivel 18: Inspiración superior",
+                descripcion: "Cuando tiras iniciativa, recuperas usos gastados de Inspiración bárdica hasta tener al menos dos usos disponibles."
+            },
+            {
+                nombre: "Nivel 19: Don épico",
+                descripcion: "Obtienes una dote de don épico u otra dote para la que cumplas los requisitos."
+            },
+            {
+                nombre: "Nivel 20: Palabras de creación",
+                descripcion: "Dominas dos palabras de creación: palabra de poder sanar y palabra de poder matar. Siempre tienes ambos conjuros preparados. Cuando lanzas uno de ellos, puedes elegir una segunda criatura situada a 3 m o menos del objetivo inicial para que también sea afectada."
+            }
+        ],
+        subclases: [
+            {
+                nombre: "Colegio de la Danza",
+                resumen: "Bardo que convierte el movimiento, la música y el ritmo en una forma de combate ágil y elegante.",
+                rasgos: [
+                    {
+                        nombre: "Nivel 3: Juego de pies deslumbrante",
+                        descripcion: "Mientras no llevas armadura ni portas escudo, obtienes beneficios como ventaja en pruebas de Interpretación relacionadas con la danza, una defensa sin armadura basada en Destreza y Carisma, ataques sin armas ágiles y daño adicional al golpear sin armas gastando Inspiración bárdica."
+                    },
+                    {
+                        nombre: "Nivel 6: Juego de pies conjunto",
+                        descripcion: "Cuando tiras iniciativa, puedes gastar un uso de Inspiración bárdica para que tú y aliados cercanos suméis una tirada de tu dado de Inspiración bárdica a vuestra iniciativa."
+                    },
+                    {
+                        nombre: "Nivel 6: Movimiento inspirador",
+                        descripcion: "Cuando un enemigo termina su turno cerca de ti, puedes usar una reacción y gastar Inspiración bárdica para moverte hasta la mitad de tu velocidad. Un aliado cercano también puede moverse hasta la mitad de su velocidad sin provocar ataques de oportunidad."
+                    },
+                    {
+                        nombre: "Nivel 14: Evasión dirigida",
+                        descripcion: "Cuando sufres un efecto que permite una salvación de Destreza para recibir la mitad de daño, no recibes daño si superas la salvación y solo recibes la mitad si fallas. Puedes compartir este beneficio con criaturas cercanas."
+                    }
+                ]
+            },
+            {
+                nombre: "Colegio del Conocimiento",
+                resumen: "Bardo centrado en el saber, la investigación, los secretos mágicos y el uso preciso de la palabra.",
+                rasgos: [
+                    {
+                        nombre: "Nivel 3: Competencias adicionales",
+                        descripcion: "Ganas competencia en tres habilidades de tu elección."
+                    },
+                    {
+                        nombre: "Nivel 3: Palabras cortantes",
+                        descripcion: "Cuando una criatura cercana a la que puedas ver tenga éxito en una prueba de característica o una tirada de ataque, puedes usar una reacción y gastar Inspiración bárdica para restar el resultado del dado a esa tirada, pudiendo convertir el éxito en un fallo."
+                    },
+                    {
+                        nombre: "Nivel 6: Descubrimientos mágicos",
+                        descripcion: "Aprendes dos conjuros de tu elección de las listas de clérigo, druida o mago, o una combinación de ellas. Estos conjuros cuentan como conjuros de bardo para ti y puedes sustituirlos al subir de nivel por otros que cumplan los mismos requisitos."
+                    },
+                    {
+                        nombre: "Nivel 14: Habilidad sin parangón",
+                        descripcion: "Cuando haces una prueba de característica y fallas, puedes gastar Inspiración bárdica, tirar el dado y sumar el resultado, pudiendo convertir el fallo en éxito. Si aun así fallas, la Inspiración bárdica no se gasta."
+                    }
+                ]
+            },
+            {
+                nombre: "Colegio del Glamour",
+                resumen: "Bardo que usa magia feérica, presencia sobrenatural y encanto para fascinar, proteger y dominar la escena.",
+                rasgos: [
+                    {
+                        nombre: "Nivel 3: Magia cautivadora",
+                        descripcion: "Siempre tienes preparados los conjuros hechizar persona e imagen múltiple. Además, después de lanzar un conjuro de encantamiento o ilusión usando un espacio de conjuro, puedes intentar hechizar o asustar a una criatura cercana."
+                    },
+                    {
+                        nombre: "Nivel 3: Manto de inspiración",
+                        descripcion: "Como acción adicional, puedes gastar Inspiración bárdica para conceder puntos de golpe temporales a criaturas cercanas elegidas. Esas criaturas pueden usar su reacción para moverse sin provocar ataques de oportunidad."
+                    },
+                    {
+                        nombre: "Nivel 6: Manto de majestad",
+                        descripcion: "Siempre tienes preparado orden imperiosa. Puedes lanzar orden imperiosa sin gastar espacio de conjuro y adoptar una apariencia majestuosa durante 1 minuto. Mientras dure, puedes lanzar orden imperiosa como acción adicional sin gastar espacios."
+                    },
+                    {
+                        nombre: "Nivel 14: Majestad inquebrantable",
+                        descripcion: "Como acción adicional, adoptas una presencia mágica imponente durante 1 minuto. Las criaturas que intenten atacarte por primera vez en un turno deben superar una salvación de Carisma contra tu CD de conjuros o fallar el ataque."
+                    }
+                ]
+            },
+            {
+                nombre: "Colegio del Valor",
+                resumen: "Bardo marcial que inspira desde la primera línea, mezclando armas, magia y relatos heroicos.",
+                rasgos: [
+                    {
+                        nombre: "Nivel 3: Entrenamiento marcial",
+                        descripcion: "Ganas competencia con armas marciales y armaduras medias y escudos. Además, puedes usar un arma sencilla o marcial como canalizador mágico para lanzar tus conjuros de bardo."
+                    },
+                    {
+                        nombre: "Nivel 3: Inspiración en combate",
+                        descripcion: "Una criatura que tenga tu Inspiración bárdica puede usarla para mejorar su defensa o su ataque. Puede sumar el dado a su CA como reacción contra un ataque, o sumarlo al daño justo después de impactar."
+                    },
+                    {
+                        nombre: "Nivel 6: Ataque adicional",
+                        descripcion: "Cuando llevas a cabo la acción Atacar en tu turno, puedes hacer dos ataques en lugar de uno. Además, puedes sustituir uno de esos ataques por el lanzamiento de uno de tus trucos con tiempo de lanzamiento de una acción."
+                    },
+                    {
+                        nombre: "Nivel 14: Magia de batalla",
+                        descripcion: "Tras lanzar un conjuro con tiempo de lanzamiento de una acción, puedes hacer un ataque con arma como acción adicional."
+                    }
+                ]
+            }
+        ]
     }
 ];
