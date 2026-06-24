@@ -1296,6 +1296,49 @@ input[readonly] {
     white-space: nowrap;
 }
 
+.tabla-scroll-catalogo {
+    width: 100%;
+
+    overflow-x: auto;
+
+    margin-top: 10px;
+    margin-bottom: 14px;
+}
+
+.tabla-equipo {
+    width: 100%;
+    max-width: none;
+
+    min-width: 820px;
+}
+
+.tabla-equipo th,
+.tabla-equipo td {
+    font-size: 0.78rem;
+    line-height: 1.15;
+}
+
+.lista-definiciones-equipo {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin: 10px 0 16px;
+}
+
+.lista-definiciones-equipo p {
+    margin: 0;
+}
+
+.categoria-armas td {
+    font-weight: bold;
+
+    font-style: italic;
+
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
 .tabla-progresion-clase {
     width: 100%;
 
