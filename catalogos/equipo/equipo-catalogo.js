@@ -13,7 +13,7 @@ function mostrarIntroduccionEquipo() {
 
 function crearTablaMonedasHTML(monedas) {
     return `
-        <table class="tabla-catalogo">
+        <table class="tabla-catalogo tabla-catalogo-compacta">
             <thead>
                 <tr>
                     <th>Moneda</th>
