@@ -1299,7 +1299,7 @@ input[readonly] {
 .tabla-scroll-catalogo {
     width: 100%;
 
-    overflow-x: auto;
+    overflow-x: visible;
 
     margin-top: 10px;
     margin-bottom: 14px;
@@ -1314,8 +1314,12 @@ input[readonly] {
 
 .tabla-equipo th,
 .tabla-equipo td {
-    font-size: 0.78rem;
-    line-height: 1.15;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.tabla-equipo thead th {
+    background: #e6dfd2;
 }
 
 .lista-definiciones-equipo {
@@ -1713,6 +1717,54 @@ input[readonly] {
         padding: 4px 6px;
 
         font-size: 0.65rem;
+    }
+
+    .tabla-scroll-catalogo {
+        overflow-x: auto;
+    }
+
+    .tabla-equipo {
+        min-width: 1050px;
+    }
+
+    .tabla-equipo th,
+    .tabla-equipo td {
+        font-size: 0.95rem;
+        line-height: 1.15;
+    }
+
+    .tabla-armas th:nth-child(1),
+    .tabla-armas td:nth-child(1) {
+        min-width: 70px;
+    }
+
+    .tabla-armas th:nth-child(2),
+    .tabla-armas td:nth-child(2) {
+        min-width: 210px;
+        white-space: nowrap;
+    }
+
+    .tabla-armas th:nth-child(3),
+    .tabla-armas td:nth-child(3) {
+        min-width: 170px;
+        white-space: nowrap;
+    }
+
+    .tabla-armas th:nth-child(4),
+    .tabla-armas td:nth-child(4) {
+        min-width: 380px;
+    }
+
+    .tabla-armas th:nth-child(5),
+    .tabla-armas td:nth-child(5) {
+        min-width: 140px;
+        white-space: nowrap;
+    }
+
+    .tabla-armas th:nth-child(6),
+    .tabla-armas td:nth-child(6) {
+        min-width: 90px;
+        white-space: nowrap;
     }
 
 }
