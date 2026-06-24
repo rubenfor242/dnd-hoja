@@ -434,11 +434,12 @@ const dotes = [
     },
     {
         nombre: "Habilidoso",
-        categoria: "Origen",
-        requisito: "Ninguno",
-        resumen: "Amplía tus competencias en habilidades y herramientas.",
+        categoria: "General",
+        requisito: "Nivel 4 o más",
+        resumen: "Amplía notablemente tus competencias.",
         beneficios: [
-            "Obtienes competencia en cualquier combinación de tres habilidades o herramientas de tu elección."
+            "Obtienes competencia en tres habilidades o herramientas distintas de tu elección.",
+            "Esta dote puede elegirse más de una vez."
         ]
     },
     {
@@ -478,7 +479,9 @@ const dotes = [
             "Aprendes un conjuro de nivel 1 de esa lista.",
             "Puedes lanzar ese conjuro una vez sin gastar espacio de conjuro.",
             "Recuperas ese uso al finalizar un descanso largo.",
-            "También puedes lanzarlo usando espacios de conjuro apropiados."
+            "También puedes lanzarlo usando espacios de conjuro apropiados.",
+            "Esta dote puede elegirse más de una vez. Cada vez debes escoger una lista de conjuros diferente.",
+            "Algún método de obtención de esta dote puede indicar una lista de conjuros determinada."
         ]
     },
     {
@@ -645,7 +648,8 @@ const dotes = [
         resumen: "Incrementa una o varias características de tu personaje.",
         beneficios: [
             "Aumenta una característica en 2 puntos, hasta un máximo de 20.",
-            "Alternativamente, aumenta dos características diferentes en 1 punto cada una, hasta un máximo de 20."
+            "Alternativamente, aumenta dos características diferentes en 1 punto cada una, hasta un máximo de 20.",
+            "Esta dote puede elegirse más de una vez."
         ]
     },
     {
@@ -846,7 +850,8 @@ const dotes = [
             "Aumenta tu Inteligencia, Sabiduría o Carisma en 1, hasta un máximo de 20.",
             "Elige un tipo de daño entre ácido, frío, fuego, relámpago o trueno.",
             "Los conjuros que lanzas ignoran la resistencia al tipo de daño elegido.",
-            "Cuando tires daño de ese tipo, puedes tratar cualquier resultado de 1 en un dado de daño como un 2."
+            "Cuando tires daño de ese tipo, puedes tratar cualquier resultado de 1 en un dado de daño como un 2.",
+            "Esta dote puede elegirse más de una vez, pero debes elegir un tipo de daño diferente cada vez."
         ]
     }
 ];
