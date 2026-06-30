@@ -785,6 +785,13 @@ input[readonly] {
     gap: 18px;
 }
 
+.nota-equipo {
+    margin: -20px 0 0;
+
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
 .textarea-equipo {
     min-height: 180px;
 

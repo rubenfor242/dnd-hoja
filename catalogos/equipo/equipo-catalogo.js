@@ -52,6 +52,10 @@ function crearClaveFavoritoArma(nombreArma) {
     return `arma:${nombreArma}`;
 }
 
+function crearClaveFavoritoArmadura(nombreArmadura) {
+    return `armadura:${nombreArmadura}`;
+}
+
 function esArmaFavorita(nombreArma) {
     const favoritos = obtenerFavoritos();
     const claveArma = crearClaveFavoritoArma(nombreArma);
@@ -61,6 +65,17 @@ function esArmaFavorita(nombreArma) {
     }
 
     return favoritos.equipo.includes(claveArma);
+}
+
+function esArmaduraFavorita(nombreArmadura) {
+    const favoritos = obtenerFavoritos();
+    const claveArmadura = crearClaveFavoritoArmadura(nombreArmadura);
+
+    if (!favoritos.equipo) {
+        return false;
+    }
+
+    return favoritos.equipo.includes(claveArmadura);
 }
 
 function alternarFavoritoArma(nombreArma) {
@@ -77,6 +92,26 @@ function alternarFavoritoArma(nombreArma) {
         );
     } else {
         favoritos.equipo.push(claveArma);
+    }
+
+    guardarFavoritos(favoritos);
+    mostrarEquipo();
+}
+
+function alternarFavoritoArmadura(nombreArmadura) {
+    const favoritos = obtenerFavoritos();
+    const claveArmadura = crearClaveFavoritoArmadura(nombreArmadura);
+
+    if (!favoritos.equipo) {
+        favoritos.equipo = [];
+    }
+
+    if (favoritos.equipo.includes(claveArmadura)) {
+        favoritos.equipo = favoritos.equipo.filter(
+            equipo => equipo !== claveArmadura
+        );
+    } else {
+        favoritos.equipo.push(claveArmadura);
     }
 
     guardarFavoritos(favoritos);
@@ -201,6 +236,70 @@ function crearTablaArmasHTML(armas) {
     `;
 }
 
+function crearTablaArmadurasHTML(armaduras) {
+    return `
+        <div class="tabla-scroll-catalogo">
+            <table class="tabla-catalogo tabla-equipo tabla-armaduras">
+                <thead>
+                    <tr>
+                        <th>Fav.</th>
+                        <th>Armadura</th>
+                        <th>CA</th>
+                        <th>Fuerza</th>
+                        <th>Sigilo</th>
+                        <th>Peso</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    ${(() => {
+                        let categoriaActual = "";
+
+                        return armaduras.map((armadura) => {
+                            let filaCategoria = "";
+
+                            if (armadura.categoria !== categoriaActual) {
+                                categoriaActual = armadura.categoria;
+
+                                filaCategoria = `
+                                    <tr class="categoria-armas">
+                                        <td colspan="6">
+                                            ${armadura.categoria}
+                                        </td>
+                                    </tr>
+                                `;
+                            }
+
+                            const textoFavorito = esArmaduraFavorita(armadura.nombre) ? "★" : "☆";
+
+                            return `
+                                ${filaCategoria}
+
+                                <tr>
+                                    <td>
+                                        <button
+                                            type="button"
+                                            class="boton-favorito"
+                                            data-armadura="${armadura.nombre}"
+                                        >
+                                            ${textoFavorito}
+                                        </button>
+                                    </td>
+                                    <td>${armadura.nombre}</td>
+                                    <td>${armadura.ca}</td>
+                                    <td>${armadura.fuerza}</td>
+                                    <td>${armadura.sigilo}</td>
+                                    <td>${armadura.peso}</td>
+                                </tr>
+                            `;
+                        }).join("");
+                    })()}
+                </tbody>
+            </table>
+        </div>
+    `;
+}
+
 function crearAcordeonArmasHTML(armasFiltradas, abrirAutomaticamente = false) {
     const textoBoton = abrirAutomaticamente ? "Ocultar" : "Mostrar";
     const claseContenido = abrirAutomaticamente ? "catalogo-contenido" : "catalogo-contenido oculto";
@@ -228,6 +327,29 @@ function crearAcordeonArmasHTML(armasFiltradas, abrirAutomaticamente = false) {
     `;
 }
 
+function crearAcordeonArmadurasHTML(armadurasFiltradas, abrirAutomaticamente = false) {
+    const textoBoton = abrirAutomaticamente ? "Ocultar" : "Mostrar";
+    const claseContenido = abrirAutomaticamente ? "catalogo-contenido" : "catalogo-contenido oculto";
+
+    return `
+        <article class="panel catalogo-item">
+            <div class="catalogo-cabecera">
+                <h2>${armadurasEquipo.titulo}</h2>
+            </div>
+
+            <button type="button" class="boton-mostrar-catalogo">
+                ${textoBoton}
+            </button>
+
+            <div class="${claseContenido}">
+                ${armadurasEquipo.descripcion.map((parrafo) => `<p>${parrafo}</p>`).join("")}
+
+                ${crearTablaArmadurasHTML(armadurasFiltradas)}
+            </div>
+        </article>
+    `;
+}
+
 function armaCoincideConBusqueda(arma, busqueda) {
     const textoArma = normalizarTexto(`
         ${arma.categoria}
@@ -241,6 +363,19 @@ function armaCoincideConBusqueda(arma, busqueda) {
     return textoArma.includes(busqueda);
 }
 
+function armaduraCoincideConBusqueda(armadura, busqueda) {
+    const textoArmadura = normalizarTexto(`
+        ${armadura.categoria}
+        ${armadura.nombre}
+        ${armadura.ca}
+        ${armadura.fuerza}
+        ${armadura.sigilo}
+        ${armadura.peso}
+    `);
+
+    return textoArmadura.includes(busqueda);
+}
+
 function mostrarEquipo() {
     const busqueda = normalizarTexto(buscadorEquipo.value.trim());
 
@@ -248,9 +383,16 @@ function mostrarEquipo() {
         return armaCoincideConBusqueda(arma, busqueda);
     });
 
+    const armadurasFiltradas = armadurasEquipo.armaduras.filter((armadura) => {
+        return armaduraCoincideConBusqueda(armadura, busqueda);
+    });
+
     const abrirResultados = busqueda.length >= 3;
 
-    listaEquipo.innerHTML = crearAcordeonArmasHTML(armasFiltradas, abrirResultados);
+    listaEquipo.innerHTML = `
+        ${crearAcordeonArmasHTML(armasFiltradas, abrirResultados)}
+        ${crearAcordeonArmadurasHTML(armadurasFiltradas, abrirResultados)}
+    `;
 
     document.querySelectorAll(".boton-mostrar-catalogo").forEach((boton) => {
         boton.addEventListener("click", () => {
@@ -269,6 +411,12 @@ function mostrarEquipo() {
     document.querySelectorAll(".boton-favorito[data-arma]").forEach((boton) => {
         boton.addEventListener("click", () => {
             alternarFavoritoArma(boton.dataset.arma);
+        });
+    });
+
+    document.querySelectorAll(".boton-favorito[data-armadura]").forEach((boton) => {
+        boton.addEventListener("click", () => {
+            alternarFavoritoArmadura(boton.dataset.armadura);
         });
     });
 }

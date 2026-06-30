@@ -110,3 +110,33 @@ const armasEquipo = {
         { categoria: "Armas a distancia marciales", nombre: "Pistola", danio: "1d10 perforante", propiedades: "Munición (alcance 9/27; bala), recarga", maestria: "Molestar", peso: "1,5 kg" }
     ]
 };
+
+const armadurasEquipo = {
+    titulo: "Armaduras",
+
+    descripcion: [
+        "Las armaduras aumentan tu Clase de Armadura (CA). Se dividen en ligeras, medias y pesadas.",
+        "Solo puedes usar una armadura de forma eficaz si tienes competencia con ella. Si llevas una armadura sin competencia, tienes desventaja en las pruebas de Fuerza y Destreza, y no puedes lanzar conjuros.",
+        "Los escudos proporcionan un bonificador de +2 a la CA, pero solo si tienes competencia con escudos.",
+        "No puedes llevar puesta más de una armadura ni embrazar más de un escudo al mismo tiempo."
+    ],
+
+    armaduras: [
+        { categoria: "Armaduras ligeras (1 minuto para ponérsela o quitársela)", nombre: "Armadura acolchada", ca: "11 + modificador por Des", fuerza: "—", sigilo: "Desventaja", peso: "4 kg" },
+        { categoria: "Armaduras ligeras (1 minuto para ponérsela o quitársela)", nombre: "Armadura de cuero", ca: "11 + modificador por Des", fuerza: "—", sigilo: "—", peso: "5 kg" },
+        { categoria: "Armaduras ligeras (1 minuto para ponérsela o quitársela)", nombre: "Armadura de cuero tachonado", ca: "12 + modificador por Des", fuerza: "—", sigilo: "—", peso: "6,5 kg" },
+
+        { categoria: "Armaduras medias (5 minutos para ponérsela y 1 minuto para quitársela)", nombre: "Armadura de pieles", ca: "12 + modificador por Des (máx. 2)", fuerza: "—", sigilo: "—", peso: "6 kg" },
+        { categoria: "Armaduras medias (5 minutos para ponérsela y 1 minuto para quitársela)", nombre: "Camisa de malla", ca: "13 + modificador por Des (máx. 2)", fuerza: "—", sigilo: "—", peso: "10 kg" },
+        { categoria: "Armaduras medias (5 minutos para ponérsela y 1 minuto para quitársela)", nombre: "Cota de escamas", ca: "14 + modificador por Des (máx. 2)", fuerza: "—", sigilo: "Desventaja", peso: "22,5 kg" },
+        { categoria: "Armaduras medias (5 minutos para ponérsela y 1 minuto para quitársela)", nombre: "Coraza", ca: "14 + modificador por Des (máx. 2)", fuerza: "—", sigilo: "—", peso: "10 kg" },
+        { categoria: "Armaduras medias (5 minutos para ponérsela y 1 minuto para quitársela)", nombre: "Media armadura", ca: "15 + modificador por Des (máx. 2)", fuerza: "—", sigilo: "Desventaja", peso: "20 kg" },
+
+        { categoria: "Armaduras pesadas (10 minutos para ponérsela y 5 minutos para quitársela)", nombre: "Cota guarnecida", ca: "14", fuerza: "—", sigilo: "Desventaja", peso: "20 kg" },
+        { categoria: "Armaduras pesadas (10 minutos para ponérsela y 5 minutos para quitársela)", nombre: "Cota de malla", ca: "16", fuerza: "Fue 13", sigilo: "Desventaja", peso: "27,5 kg" },
+        { categoria: "Armaduras pesadas (10 minutos para ponérsela y 5 minutos para quitársela)", nombre: "Armadura de bandas", ca: "17", fuerza: "Fue 15", sigilo: "Desventaja", peso: "30 kg" },
+        { categoria: "Armaduras pesadas (10 minutos para ponérsela y 5 minutos para quitársela)", nombre: "Armadura de placas", ca: "18", fuerza: "Fue 15", sigilo: "Desventaja", peso: "32,5 kg" },
+
+        { categoria: "Escudos (acción para ponérselo o quitárselo)", nombre: "Escudo", ca: "+2", fuerza: "—", sigilo: "—", peso: "3 kg" }
+    ]
+};
