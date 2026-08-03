@@ -698,7 +698,7 @@ function actualizarModoProgreso() {
     if (modoProgreso.value === "px") {
         campoPx.classList.remove("oculto");
         tablaPxContenedor.classList.remove("oculto");
-        inputNivel.readOnly = true;
+        inputNivel.disabled = true;
 
         actualizarDesdePx();
     }
@@ -706,7 +706,7 @@ function actualizarModoProgreso() {
     if (modoProgreso.value === "hitos") {
         campoPx.classList.add("oculto");
         tablaPxContenedor.classList.add("oculto");
-        inputNivel.readOnly = false;
+        inputNivel.disabled = false;
 
         actualizarDesdeNivel();
     }
@@ -1161,7 +1161,7 @@ generarTablaPx();
 generarFilasConjurosPreparados();
 cargarFichaLocal();
 
-inputNivel.addEventListener("input", actualizarDesdeNivel);
+inputNivel.addEventListener("change", actualizarDesdeNivel);
 inputPx.addEventListener("input", actualizarDesdePx);
 modoProgreso.addEventListener("change", actualizarModoProgreso);
 
