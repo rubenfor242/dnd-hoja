@@ -763,11 +763,6 @@ function limitarTotalEspacios(input) {
     return input.value;
 }
 
-function ajustarAlturaTextarea(textarea) {
-    textarea.style.height = "auto";
-    textarea.style.height = `${textarea.scrollHeight}px`;
-}
-
 function crearDiamanteConjuro(gastado = false) {
     const diamante = document.createElement("button");
 
@@ -884,10 +879,6 @@ function crearFilaConjuro() {
     notas.rows = 2;
     notas.classList.add("conjuro-notas");
 
-    notas.addEventListener("input", () => {
-        ajustarAlturaTextarea(notas);
-    });
-
     const separador = document.createElement("div");
     separador.classList.add("separador-conjuro");
 
@@ -898,8 +889,6 @@ function crearFilaConjuro() {
     tablaConjurosPreparados.appendChild(componentes);
     tablaConjurosPreparados.appendChild(notas);
     tablaConjurosPreparados.appendChild(separador);
-
-    ajustarAlturaTextarea(notas);
 }
 
 function generarFilasConjurosPreparados() {
@@ -959,10 +948,6 @@ function recalcularFicha() {
     actualizarMagia();
     actualizarInspiracion();
     resaltarNivelActual();
-
-    document.querySelectorAll("textarea").forEach(textarea => {
-        ajustarAlturaTextarea(textarea);
-    });
 }
 
 function cargarFichaLocal() {
@@ -1275,14 +1260,6 @@ document.querySelectorAll(".fila-espacios[data-nivel-conjuro]").forEach(fila => 
 });
 
 reiniciarConjuros.addEventListener("click", reiniciarEspaciosConjuro);
-
-document.querySelectorAll("textarea").forEach(textarea => {
-    textarea.addEventListener("input", () => {
-        ajustarAlturaTextarea(textarea);
-    });
-
-    ajustarAlturaTextarea(textarea);
-});
 
 document.addEventListener("input", evento => {
     if (
