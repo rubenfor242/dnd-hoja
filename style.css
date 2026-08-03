@@ -268,7 +268,8 @@ textarea:focus {
 textarea {
     width: 100%;
 
-    resize: vertical;
+    resize: none;
+    overflow-y: hidden;
 
     background: transparent;
 
