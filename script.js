@@ -344,6 +344,18 @@ function obtenerCompetenciaActual() {
     return parseInt(textoCompetencia);
 }
 
+function obtenerMultiplicadorCompetencia(boton) {
+    if (boton.classList.contains("pericia")) {
+        return 2;
+    }
+
+    if (boton.classList.contains("activa")) {
+        return 1;
+    }
+
+    return 0;
+}
+
 function obtenerPxPorNivel(nivel) {
     const fila = tablaPx.find(elemento => elemento.nivel === nivel);
     return fila.px;
@@ -701,9 +713,8 @@ function actualizarAtributos() {
 
         let totalSalvacion = modificador;
 
-        if (botonSalvacion.classList.contains("activa")) {
-            totalSalvacion += competencia;
-        }
+        totalSalvacion +=
+            competencia * obtenerMultiplicadorCompetencia(botonSalvacion);
 
         atributo.salvacion.textContent = formatearModificador(totalSalvacion);
 
@@ -714,9 +725,8 @@ function actualizarAtributos() {
 
             let totalHabilidad = modificador;
 
-            if (botonHabilidad.classList.contains("activa")) {
-                totalHabilidad += competencia;
-            }
+            totalHabilidad +=
+                competencia * obtenerMultiplicadorCompetencia(botonHabilidad);
 
             atributo.habilidades[claveHabilidad].textContent =
                 formatearModificador(totalHabilidad);
@@ -1173,7 +1183,28 @@ document.querySelectorAll(".competencia-btn").forEach(boton => {
             return;
         }
 
-        boton.classList.toggle("activa");
+        const esHabilidad =
+            boton.dataset.habilidad &&
+            boton.dataset.habilidad !== "salvacion";
+
+        if (!esHabilidad) {
+            boton.classList.toggle("activa");
+            boton.classList.remove("pericia");
+            boton.textContent = "";
+        } else if (
+            !boton.classList.contains("activa") &&
+            !boton.classList.contains("pericia")
+        ) {
+            boton.classList.add("activa");
+            boton.textContent = "";
+        } else if (boton.classList.contains("activa")) {
+            boton.classList.remove("activa");
+            boton.classList.add("pericia");
+            boton.textContent = "★";
+        } else {
+            boton.classList.remove("pericia");
+            boton.textContent = "";
+        }
 
         actualizarAtributos();
         actualizarEstado();
