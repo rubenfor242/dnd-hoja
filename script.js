@@ -604,22 +604,39 @@ function actualizarEstado() {
 function actualizarMagia() {
     const claveAptitud = aptitudMagica.value;
 
-    let modificadorMagico = 0;
+    if (claveAptitud === "ninguna") {
+        modificadorAptitudMagica.textContent = "";
+        cdConjuros.textContent = "";
+        ataqueConjuros.textContent = "";
 
-    if (claveAptitud !== "ninguna") {
-        const puntuacion = limitarNumero(
-            atributos[claveAptitud].input.value,
-            3,
-            20
-        );
+        bonoTempCD.value = "";
+        bonoTempAtaqueConjuro.value = "";
 
-        modificadorMagico = calcularModificador(puntuacion);
+        bonoTempCD.disabled = true;
+        bonoTempAtaqueConjuro.disabled = true;
+
+        return;
     }
 
+    bonoTempCD.disabled = false;
+    bonoTempAtaqueConjuro.disabled = false;
+
+    const puntuacion = limitarNumero(
+        atributos[claveAptitud].input.value,
+        3,
+        20
+    );
+
+    const modificadorMagico = calcularModificador(puntuacion);
     const competencia = obtenerCompetenciaActual();
 
-    const bonoCD = limitarNumero(bonoTempCD.value, -99, 99);
-    const bonoAtaque = limitarNumero(bonoTempAtaqueConjuro.value, -99, 99);
+    const bonoCD = bonoTempCD.value === ""
+        ? 0
+        : limitarNumero(bonoTempCD.value, -99, 99);
+
+    const bonoAtaque = bonoTempAtaqueConjuro.value === ""
+        ? 0
+        : limitarNumero(bonoTempAtaqueConjuro.value, -99, 99);
 
     bonoTempCD.value = bonoCD;
     bonoTempAtaqueConjuro.value = bonoAtaque;
